@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Bar Guau Guau | Puerto Pe&ntilde;asco, Sonora</title>
+  <meta name="description" content="Bar Guau Guau en Puerto Pe&ntilde;asco. Espect&aacute;culos en vivo, buen trago y bonito ambiente. Abiertos todas las noches en la Calle 8, Ferrocarrilera. 7 PM a 3 AM." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://neonframewebdev.github.io/bar_guau_guau/" />
+  <meta property="og:title" content="Bar Guau Guau | Puerto Pe&ntilde;asco, Sonora" />
+  <meta property="og:description" content="Espect&aacute;culos en vivo, buen trago y bonito ambiente. Abiertos todas las noches. Rocky Point's best night out." />
+  <meta property="og:image" content="https://neonframewebdev.github.io/bar_guau_guau/assets/exterior_1.jpg" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bar Guau Guau | Puerto Pe&ntilde;asco" />
+  <meta name="twitter:description" content="Espect&aacute;culos en vivo, buen trago y bonito ambiente. Rocky Point, Sonora." />
+  <meta name="twitter:image" content="https://neonframewebdev.github.io/bar_guau_guau/assets/exterior_1.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Preload hero -->
+  <link rel="preload" as="image" href="assets/exterior_1.jpg" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="loading">
+
+  <!-- ── Age Gate ──────────────────────────────────────────────── -->
+  <div id="age-gate" role="dialog" aria-modal="true" aria-label="Verificacion de edad / Age verification">
+    <!-- Diamond-G SVG logo (120px, red stroke, transparent fill) -->
+    <svg class="age-gate-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Diamond outline: square rotated 45deg, centered at 60,60, half-width ~52px -->
+      <polygon
+        points="60,8 112,60 60,112 8,60"
+        stroke="#E60023"
+        stroke-width="2.5"
+        fill="none"
+      />
+      <!-- Stylized G centered in upper portion of diamond -->
+      <text
+        x="60" y="54"
+        font-family="'Bebas Neue', sans-serif"
+        font-size="28"
+        fill="#E60023"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        letter-spacing="0"
+      >G</text>
+      <!-- GUAU GUAU across the widest horizontal band -->
+      <text
+        x="60" y="72"
+        font-family="'Bebas Neue', sans-serif"
+        font-size="13"
+        fill="#E60023"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        letter-spacing="2"
+      >GUAU GUAU</text>
+    </svg>
+
+    <span class="age-gate-brand">GUAU GUAU</span>
+
+    <div class="age-gate-statement">
+      <span class="line-es">Solo para mayores de 18 a&ntilde;os.</span>
+      <span class="line-en">Adults only. 18+.</span>
+    </div>
+
+    <div class="age-gate-ctas">
+      <button id="age-enter">Entrar / Enter</button>
+      <button id="age-exit">Salir / Exit</button>
+    </div>
+
+    <p class="age-gate-fine">
+      Este sitio contiene contenido para adultos. Al entrar confirmas que tienes 18 a&ntilde;os o m&aacute;s.<br />
+      This site contains adult content. By entering you confirm you are 18 or older.
+    </p>
+  </div>
+
+  <!-- ── Loader ────────────────────────────────────────────────── -->
+  <div id="loader" role="status" aria-label="Cargando / Loading">
+    <div class="loader-logo-wrap">
+      <svg class="loader-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon
+          class="loader-diamond"
+          points="60,8 112,60 60,112 8,60"
+          stroke="#E60023"
+          stroke-width="2.5"
+          fill="none"
+        />
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+        <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+      </svg>
+      <span class="loader-wordmark">GUAU GUAU</span>
+    </div>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <nav role="navigation" aria-label="Navegaci&oacute;n principal">
+    <a href="index.html" class="nav-logo" aria-label="Bar Guau Guau inicio">
+      <!-- Diamond-G mark (36px) -->
+      <svg class="nav-logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2.5" fill="none"/>
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+        <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+      </svg>
+      <span class="nav-wordmark">GUAU GUAU</span>
+    </a>
+
+    <div class="nav-right">
+      <!-- Nav links (desktop, 768px+) -->
+      <ul class="nav-links" role="list">
+        <li><a href="nosotros.html" data-es="La Casa" data-en="The House">La Casa</a></li>
+        <li><a href="bebidas.html" data-es="Drinks" data-en="Drinks">Drinks</a></li>
+        <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
+        <li><a href="galeria.html" data-es="Galer&iacute;a" data-en="Gallery">Galer&iacute;a</a></li>
+        <li><a href="visita.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
+
+      <!-- Language toggle pill (always visible) -->
+      <button class="lang-toggle" aria-label="Switch to English" type="button">
+        <span class="lt-flag">🇺🇸</span>
+        <span class="lt-label">English</span>
+      </button>
+
+      <!-- Desktop CTA -->
+      <a href="visita.html" class="nav-cta"
+         data-es="Reservar" data-en="Reserve">Reservar</a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" aria-label="Abrir men&uacute;" aria-expanded="false" aria-controls="nav-drawer" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Nav Drawer (mobile) ───────────────────────────────────── -->
+  <div id="nav-drawer" class="nav-drawer" role="navigation" aria-label="Men&uacute; m&oacute;vil">
+    <ul>
+      <li><a href="nosotros.html" data-es="La Casa" data-en="The House">La Casa</a></li>
+      <li><a href="bebidas.html" data-es="Drinks" data-en="Drinks">Drinks</a></li>
+      <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
+      <li><a href="galeria.html" data-es="Galer&iacute;a" data-en="Gallery">Galer&iacute;a</a></li>
+      <li><a href="visita.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+    <a href="visita.html" class="drawer-cta"
+       data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
+  </div>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-wrap">
+      <img
+        class="hero-img"
+        src="assets/exterior_1.jpg"
+        alt="Bar Guau Guau de noche con multitud de motociclistas y letrero de ne&oacute;n iluminado"
+      />
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-neon-pulse" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">PUERTO PE&Ntilde;ASCO, SONORA</p>
+        <h1 class="hero-h1"
+            data-es="La noche<br>empieza aqu&iacute;."
+            data-en="The night<br>starts here.">
+          La noche<br>empieza aqu&iacute;.
+        </h1>
+        <p class="hero-sub"
+           data-es="Espect&aacute;culos en vivo, buen trago y bonito ambiente. Abiertos todas las noches en Pe&ntilde;asco."
+           data-en="Live shows, good drinks, and a vibe you won&apos;t forget. Open every night in Rocky Point.">
+          Espect&aacute;culos en vivo, buen trago y bonito ambiente. Abiertos todas las noches en Pe&ntilde;asco.
+        </p>
+        <div class="hero-ctas">
+          <a href="visita.html" class="btn-primary"
+             data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
+          <a href="tel:+526121371790" class="btn-ghost"
+             data-es="Llamar ahora" data-en="Call now">Llamar ahora</a>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">&#8964;</div>
+    </div>
+  </section>
+
+  <!-- ── La Casa (preview strip on home) ──────────────────────── -->
+  <section id="lacasa" class="section-wrap section-bg-dark reveal" aria-label="La Casa">
+    <span class="gold-rule" aria-hidden="true"></span>
+    <span class="eyebrow"
+          data-es="NUESTRA HISTORIA" data-en="OUR STORY">NUESTRA HISTORIA</span>
+    <h2 class="section-title"
+        data-es="LA CASA" data-en="THE HOUSE">LA CASA</h2>
+
+    <div class="lacasa-grid">
+      <div class="lacasa-text">
+        <p data-es="Bar Guau Guau lleva a&ntilde;os siendo parte de las noches de Puerto Pe&ntilde;asco. Estamos en la Calle 8, en el coraz&oacute;n de Ferrocarrilera, y la gente sigue volviendo. Desde los locales que conocen el lugar de memoria hasta los motociclistas que llegan cada Rally, aqu&iacute; todos encuentran su noche."
+           data-en="Bar Guau Guau has been part of Puerto Pe&ntilde;asco nights for years. We&apos;re on Calle 8 in Ferrocarrilera, and people keep coming back. Local regulars who know every corner. Motorcycle crews rolling in for the Rally. Everyone finds their night here.">
+          Bar Guau Guau lleva a&ntilde;os siendo parte de las noches de Puerto Pe&ntilde;asco. Estamos en la Calle 8, en el coraz&oacute;n de Ferrocarrilera, y la gente sigue volviendo. Desde los locales que conocen el lugar de memoria hasta los motociclistas que llegan cada Rally, aqu&iacute; todos encuentran su noche.
+        </p>
+        <p data-es="El ambiente es de los que recuerdas. Luces, m&uacute;sica, espect&aacute;culos en vivo y un bar bien surtido. Abrimos de lunes a domingo a las 7 de la noche. A las 3 AM cerramos la puerta."
+           data-en="It&apos;s the kind of atmosphere you remember. Lights, music, live shows, and a bar stocked the way it should be. Open Monday through Sunday starting at 7 PM. Last call at 3 AM.">
+          El ambiente es de los que recuerdas. Luces, m&uacute;sica, espect&aacute;culos en vivo y un bar bien surtido. Abrimos de lunes a domingo a las 7 de la noche. A las 3 AM cerramos la puerta.
+        </p>
+
+        <div class="hours-block">
+          <p class="hours-block-label"
+             data-es="HORARIO" data-en="HOURS">HORARIO</p>
+          <div class="hours-row">
+            <span data-es="Lun - Dom" data-en="Mon - Sun">Lun - Dom</span>
+            <span>7:00 PM &ndash; 3:00 AM</span>
+          </div>
+        </div>
+
+        <div style="margin-top:1.75rem;">
+          <a href="nosotros.html" class="btn-ghost"
+             data-es="Conoce m&aacute;s" data-en="Learn more">Conoce m&aacute;s</a>
+        </div>
+      </div>
+
+      <div class="lacasa-photo-wrap">
+        <img
+          class="lacasa-photo"
+          src="assets/interior_1.jpg"
+          alt="Bar bien surtido con botellas iluminadas en Bar Guau Guau"
+          loading="lazy"
+        />
+        <div class="lacasa-photo-overlay" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Events preview on home ───────────────────────────────── -->
+  <section id="eventos-preview" class="section-wrap section-bg-alt reveal" aria-label="Eventos">
+    <span class="eyebrow"
+          data-es="CADA SEMANA" data-en="EVERY WEEK">CADA SEMANA</span>
+    <h2 class="section-title"
+        data-es="EVENTOS" data-en="EVENTS">EVENTOS</h2>
+    <p class="eventos-intro"
+       data-es="Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo."
+       data-en="Something&apos;s going on every week. Check the lineup and get here early.">
+      Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo.
+    </p>
+    <div style="margin-top:1rem;">
+      <a href="eventos.html" class="btn-primary"
+         data-es="Ver todos los eventos" data-en="See all events">Ver todos los eventos</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-left">
+      <p class="footer-brand">GUAU GUAU</p>
+      <p class="footer-copy">
+        &copy; <span class="copyright-year"></span> Bar Guau Guau. Puerto Pe&ntilde;asco, Sonora.<br />
+        <span data-es="Calle 8. Todas las noches." data-en="Calle 8. Every night.">Calle 8. Todas las noches.</span>
+      </p>
+    </div>
+    <div class="footer-center">
+      <p class="footer-disclaimer"
+         data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
+         data-en="Adults 18+ only. Please drink responsibly.">
+        Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+      </p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-socials">
+        <!-- Social handles not confirmed. Placeholders per Spark's copy notes. -->
+        <a href="#" class="footer-social-link" aria-label="Facebook [handle por confirmar / handle TBD]" title="Facebook [copy needed: handle]">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-link" aria-label="Instagram [handle por confirmar / handle TBD]" title="Instagram [copy needed: handle]">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

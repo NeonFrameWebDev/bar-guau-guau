@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Drinks &amp; Bottle Service | Bar Guau Guau &mdash; Puerto Pe&ntilde;asco</title>
+  <meta name="description" content="Cubetas, cocteles, mezcal, tequila y servicio de botella en Bar Guau Guau. Calle 8, Puerto Pe&ntilde;asco, Sonora." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://neonframewebdev.github.io/bar_guau_guau/bebidas.html" />
+  <meta property="og:title" content="Drinks | Bar Guau Guau" />
+  <meta property="og:image" content="https://neonframewebdev.github.io/bar_guau_guau/assets/exterior_1.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <nav role="navigation" aria-label="Navegaci&oacute;n principal">
+    <a href="index.html" class="nav-logo" aria-label="Bar Guau Guau inicio">
+      <svg class="nav-logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2.5" fill="none"/>
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+        <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+      </svg>
+      <span class="nav-wordmark">GUAU GUAU</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="nosotros.html" data-es="La Casa" data-en="The House">La Casa</a></li>
+        <li><a href="bebidas.html" class="active" data-es="Drinks" data-en="Drinks">Drinks</a></li>
+        <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
+        <li><a href="galeria.html" data-es="Galer&iacute;a" data-en="Gallery">Galer&iacute;a</a></li>
+        <li><a href="visita.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
+
+      <button class="lang-toggle" aria-label="Switch to English" type="button">
+        <span class="lt-flag">🇺🇸</span>
+        <span class="lt-label">English</span>
+      </button>
+
+      <a href="visita.html" class="nav-cta"
+         data-es="Reservar" data-en="Reserve">Reservar</a>
+
+      <button class="nav-hamburger" aria-label="Abrir men&uacute;" aria-expanded="false" aria-controls="nav-drawer" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="navigation" aria-label="Men&uacute; m&oacute;vil">
+    <ul>
+      <li><a href="nosotros.html" data-es="La Casa" data-en="The House">La Casa</a></li>
+      <li><a href="bebidas.html" data-es="Drinks" data-en="Drinks">Drinks</a></li>
+      <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
+      <li><a href="galeria.html" data-es="Galer&iacute;a" data-en="Gallery">Galer&iacute;a</a></li>
+      <li><a href="visita.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+    <a href="visita.html" class="drawer-cta"
+       data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
+  </div>
+
+  <!-- ── Sub-page hero ─────────────────────────────────────────── -->
+  <div class="subpage-hero">
+    <span class="eyebrow"
+          data-es="LA BARRA" data-en="THE BAR">LA BARRA</span>
+    <h1 data-es="DRINKS &amp; BOTELLA" data-en="DRINKS &amp; BOTTLE SERVICE">DRINKS &amp; BOTELLA</h1>
+  </div>
+
+  <!-- ── Drinks grid ───────────────────────────────────────────── -->
+  <section id="bebidas" class="section-wrap section-bg-dark" aria-label="Men&uacute; de bebidas">
+    <span class="gold-rule" aria-hidden="true"></span>
+
+    <p class="bebidas-intro reveal"
+       data-es="Bebidas que se sienten bien desde la primera."
+       data-en="Drinks that hit right from the first one.">
+      Bebidas que se sienten bien desde la primera.
+    </p>
+
+    <div class="drinks-grid stagger-parent">
+
+      <!-- Cubeta de 6 -->
+      <div class="drink-card stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#E60023" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Cubeta de 6" data-en="Bucket Beer (6)">Cubeta de 6</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="Seis cervezas fr&iacute;as. Lo cl&aacute;sico de la noche. Pregunta por las marcas disponibles."
+           data-en="Six cold beers. The classic move. Ask what&apos;s on ice.">
+          Seis cervezas fr&iacute;as. Lo cl&aacute;sico de la noche. Pregunta por las marcas disponibles.
+        </p>
+        <p class="drink-card-note"
+           data-es="Preguntar al mesero" data-en="Ask your server">Preguntar al mesero</p>
+      </div>
+
+      <!-- Mezcal del rancho -->
+      <div class="drink-card stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#E60023" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Mezcal del Rancho" data-en="Mezcal del Rancho">Mezcal del Rancho</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="Mezcal artesanal servido en caballito. El que te hace platicar con desconocidos."
+           data-en="Mezcal served straight. The kind that gets the conversation going.">
+          Mezcal artesanal servido en caballito. El que te hace platicar con desconocidos.
+        </p>
+        <p class="drink-card-note"
+           data-es="Preguntar al cantinero" data-en="Ask the bartender">Preguntar al cantinero</p>
+      </div>
+
+      <!-- Tequila Reserva -->
+      <div class="drink-card stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#E60023" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Tequila Reserva" data-en="Tequila Reserva">Tequila Reserva</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="Para cuando la noche lo amerita. Servido solo o en coctel. Pregunta al mesero."
+           data-en="For when the night calls for it. Served neat or in a cocktail. Ask your server.">
+          Para cuando la noche lo amerita. Servido solo o en coctel. Pregunta al mesero.
+        </p>
+        <p class="drink-card-note"
+           data-es="Preguntar al mesero" data-en="Ask your server">Preguntar al mesero</p>
+      </div>
+
+      <!-- Coctel de la casa -->
+      <div class="drink-card stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#E60023" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Coctel de la Casa" data-en="House Cocktail">Coctel de la Casa</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="La mezcla que solo nosotros hacemos. Pregunta al cantinero cu&aacute;l es la de hoy."
+           data-en="The house mix. Ask the bartender what they&apos;re making tonight.">
+          La mezcla que solo nosotros hacemos. Pregunta al cantinero cu&aacute;l es la de hoy.
+        </p>
+        <p class="drink-card-note"
+           data-es="Var&iacute;a cada noche" data-en="Changes nightly">Var&iacute;a cada noche</p>
+      </div>
+
+      <!-- Champana en mesa (premium) -->
+      <div class="drink-card premium stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#C9A24E" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Champa&ntilde;a en Mesa" data-en="Bottle Service">Champa&ntilde;a en Mesa</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="Llega con estilo. Servicio de botella directo a tu mesa con acompa&ntilde;amiento."
+           data-en="Arrive in style. Bottle service brought to your table with table service included.">
+          Llega con estilo. Servicio de botella directo a tu mesa con acompa&ntilde;amiento.
+        </p>
+        <p class="drink-card-note"
+           data-es="Reservar con anticipaci&oacute;n" data-en="Reserve in advance">Reservar con anticipaci&oacute;n</p>
+      </div>
+
+      <!-- Agua / Refresco -->
+      <div class="drink-card stagger-child reveal">
+        <div class="drink-card-header">
+          <svg class="diamond-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <polygon points="7,1 13,7 7,13 1,7" stroke="#E60023" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="drink-card-name"
+                data-es="Agua / Refresco" data-en="Agua / Soft Drink">Agua / Refresco</span>
+        </div>
+        <p class="drink-card-desc"
+           data-es="Para el que maneja o para el que quiere seguir hasta las 3. Sin alcohol, sin juicio."
+           data-en="For the designated driver or for pacing yourself to 3 AM. No judgment.">
+          Para el que maneja o para el que quiere seguir hasta las 3. Sin alcohol, sin juicio.
+        </p>
+        <p class="drink-card-note"
+           data-es="Jarritos disponibles" data-en="Jarritos available">Jarritos disponibles</p>
+      </div>
+
+    </div>
+
+    <!-- Food note -->
+    <div class="reveal" style="margin-top:2.5rem; padding:1.2rem; background:rgba(201,162,78,0.06); border:1px solid rgba(201,162,78,0.2); border-radius:3px;">
+      <span class="eyebrow" style="margin-bottom:0.4rem;"
+            data-es="BOTANAS" data-en="FOOD">BOTANAS</span>
+      <p style="font-size:0.95rem; color:var(--text);"
+         data-es="Tacos y botanas disponibles. Pregunta al mesero por el men&uacute; de la noche."
+         data-en="Tacos and snacks available. Ask your server for tonight&apos;s food options.">
+        Tacos y botanas disponibles. Pregunta al mesero por el men&uacute; de la noche.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-left">
+      <p class="footer-brand">GUAU GUAU</p>
+      <p class="footer-copy">
+        &copy; <span class="copyright-year"></span> Bar Guau Guau. Puerto Pe&ntilde;asco, Sonora.<br />
+        <span data-es="Calle 8. Todas las noches." data-en="Calle 8. Every night.">Calle 8. Todas las noches.</span>
+      </p>
+    </div>
+    <div class="footer-center">
+      <p class="footer-disclaimer"
+         data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
+         data-en="Adults 18+ only. Please drink responsibly.">
+        Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+      </p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-socials">
+        <a href="#" class="footer-social-link" aria-label="Facebook [handle TBD]" title="Facebook [copy needed: handle]">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-link" aria-label="Instagram [handle TBD]" title="Instagram [copy needed: handle]">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
