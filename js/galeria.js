@@ -74,7 +74,8 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   function getCaptionForTile(tile) {
     const lang = getLang();
-    return tile.dataset[lang] || tile.dataset.es || "";
+    const key = lang === "en" ? "capEn" : "capEs";
+    return tile.dataset[key] || tile.dataset.capEs || "";
   }
 
   /* ── Update counter ──────────────────────────────────────── */

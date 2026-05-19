@@ -195,19 +195,17 @@
 */
 
 .gal-masonry {
-  columns: 2;
-  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .gal-tile {
-  break-inside: avoid;
-  margin-bottom: 10px;
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
   border: 1px solid rgba(201,162,78,0.18);
   cursor: pointer;
-  /* GPU composite for smooth hover */
   transform: translateZ(0);
   transition:
     border-color 0.3s ease,
@@ -302,11 +300,7 @@
 /* ── TABLET: 2 cols with proper aspect ratios ──────────────── */
 @media (min-width: 600px) {
   .gal-masonry {
-    column-gap: 14px;
-  }
-
-  .gal-tile {
-    margin-bottom: 14px;
+    gap: 14px;
   }
 
   /* Portrait: 3:4 */
@@ -328,12 +322,8 @@
 /* ── DESKTOP: 3 columns, bigger gaps ──────────────────────── */
 @media (min-width: 768px) {
   .gal-masonry {
-    columns: 3;
-    column-gap: 18px;
-  }
-
-  .gal-tile {
-    margin-bottom: 18px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
   }
 
   .gal-tile-cap-text {
