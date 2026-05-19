@@ -49,15 +49,9 @@ body {
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  cursor: none; /* hide default; custom cursor takes over on desktop */
 }
 
 body.loading { overflow: hidden; }
-
-/* Restore default cursor on mobile/touch */
-@media (hover: none) {
-  body { cursor: auto; }
-}
 
 img {
   display: block;
@@ -75,54 +69,6 @@ ul { list-style: none; }
 ::selection {
   background: var(--red);
   color: var(--bg);
-}
-
-/* ── Custom Cursor (desktop only) ───────────────────────────── */
-#custom-cursor {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  border: 2px solid var(--red);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.25s var(--ease-out),
-    height 0.25s var(--ease-out),
-    border-color 0.25s ease,
-    opacity 0.25s ease;
-  box-shadow: 0 0 8px rgba(230,0,35,0.5);
-  mix-blend-mode: exclusion;
-}
-
-#custom-cursor.expanded {
-  width: 52px;
-  height: 52px;
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(201,162,78,0.6);
-}
-
-#custom-cursor-dot {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 5px;
-  background: var(--red);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  #custom-cursor { display: block; }
-  #custom-cursor-dot { display: block; }
 }
 
 /* ── Language visibility ─────────────────────────────────────── */
@@ -404,7 +350,7 @@ body[data-lang="en"] [data-hide-en] { display: none !important; }
   border: 2px solid var(--red);
   width: 100%;
   min-height: 56px;
-  cursor: none;
+  cursor: pointer;
   letter-spacing: 0.14em;
   transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   border-radius: var(--radius);
@@ -470,7 +416,7 @@ body[data-lang="en"] [data-hide-en] { display: none !important; }
   border: 1px solid rgba(154, 144, 144, 0.25);
   width: 100%;
   min-height: 44px;
-  cursor: none;
+  cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease;
   border-radius: var(--radius);
 }
@@ -600,7 +546,7 @@ nav.scrolled {
   border: 1px solid rgba(240, 237, 232, 0.12);
   border-radius: 20px;
   padding: 0.3rem 0.7rem;
-  cursor: none;
+  cursor: pointer;
   font-family: var(--font-body);
   font-size: 0.78rem;
   color: var(--text);
@@ -626,7 +572,7 @@ nav.scrolled {
   color: var(--bg);
   border: none;
   padding: 0.45rem 1.1rem;
-  cursor: none;
+  cursor: pointer;
   border-radius: var(--radius);
   letter-spacing: 0.08em;
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
@@ -1013,7 +959,7 @@ nav.scrolled {
   color: var(--bg);
   border: none;
   padding: 0.75rem 1.8rem;
-  cursor: none;
+  cursor: pointer;
   border-radius: var(--radius);
   letter-spacing: 0.1em;
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s var(--ease-out);
@@ -1038,7 +984,7 @@ nav.scrolled {
   color: var(--red);
   border: 1.5px solid var(--red);
   padding: 0.75rem 1.8rem;
-  cursor: none;
+  cursor: pointer;
   border-radius: var(--radius);
   letter-spacing: 0.1em;
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s var(--ease-out);
@@ -1938,7 +1884,7 @@ nav.scrolled {
   border: 1px solid rgba(230,0,35,0.35);
   color: var(--text);
   font-size: 1.2rem;
-  cursor: none;
+  cursor: pointer;
   width: 44px;
   height: 44px;
   display: flex;
@@ -1962,7 +1908,7 @@ nav.scrolled {
   border: 1px solid rgba(230,0,35,0.4);
   color: var(--text);
   font-size: 1.3rem;
-  cursor: none;
+  cursor: pointer;
   width: 52px;
   height: 52px;
   display: flex;
@@ -2043,7 +1989,7 @@ nav.scrolled {
   border: none;
   width: 100%;
   min-height: 60px;
-  cursor: none;
+  cursor: pointer;
   border-radius: var(--radius);
   letter-spacing: 0.1em;
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s var(--ease-out);
@@ -2262,6 +2208,4 @@ section {
   .loader-logo-wrap::before { animation: none; }
   .open-now-dot { animation: none; }
   .scroll-cue { animation: none; }
-  body { cursor: auto; }
-  #custom-cursor, #custom-cursor-dot { display: none; }
 }

@@ -1,6 +1,6 @@
-/* Bar Guau Guau - main.js MAX EFFORT UPGRADE
-   Handles: branded loader, age-gate, custom cursor, nav,
-   parallax, ember particles, mouse glow, scroll reveal + stagger,
+/* Bar Guau Guau - main.js
+   Handles: branded loader, age-gate, nav,
+   ember particles, mouse glow, scroll reveal + stagger,
    gallery lightbox, event tonight highlight, open-now badge,
    neon divider reveals, scroll cue, nav scroll class, footer year.
 */
@@ -128,64 +128,6 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
       window.location.href = "https://www.google.com";
     });
   }
-})();
-
-/* ── Custom Cursor (desktop only) ──────────────────────────── */
-(function initCursor() {
-  // Only run on hover-capable devices
-  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-
-  const ring = document.getElementById("custom-cursor");
-  const dot = document.getElementById("custom-cursor-dot");
-  if (!ring || !dot) return;
-
-  let mx = -100, my = -100;
-  let cx = -100, cy = -100;
-  let raf;
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function animate() {
-    cx = lerp(cx, mx, 0.14);
-    cy = lerp(cy, my, 0.14);
-    ring.style.left = cx + "px";
-    ring.style.top  = cy + "px";
-    dot.style.left  = mx + "px";
-    dot.style.top   = my + "px";
-    raf = requestAnimationFrame(animate);
-  }
-
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-  });
-
-  document.addEventListener("mouseleave", () => {
-    ring.style.opacity = "0";
-    dot.style.opacity = "0";
-  });
-
-  document.addEventListener("mouseenter", () => {
-    ring.style.opacity = "1";
-    dot.style.opacity = "1";
-  });
-
-  // Expand on interactive elements
-  const interactors = "a, button, .gallery-item, .event-card-full, .drink-card, .btn-primary, .btn-ghost, #age-enter, #age-exit";
-
-  document.addEventListener("mouseover", (e) => {
-    if (e.target.closest(interactors)) {
-      ring.classList.add("expanded");
-    }
-  });
-
-  document.addEventListener("mouseout", (e) => {
-    if (e.target.closest(interactors)) {
-      ring.classList.remove("expanded");
-    }
-  });
-
-  animate();
 })();
 
 /* ── Nav Hamburger ──────────────────────────────────────────── */
