@@ -768,10 +768,10 @@ nav.scrolled {
 /* --- Layer 4: Diamond-G SVG centerpiece --- */
 .hero-centerpiece {
   position: absolute;
-  top: 0;
+  top: var(--nav-h);
   left: 0;
   right: 0;
-  height: 56%;
+  height: calc(56% - var(--nav-h));
   z-index: 4;
   display: flex;
   align-items: center;
@@ -1039,7 +1039,7 @@ nav.scrolled {
 
 /* Desktop scale-ups */
 @media (min-width: 768px) {
-  .hero-centerpiece { height: 60%; }
+  .hero-centerpiece { height: calc(60% - var(--nav-h)); }
   .hero-diamond-svg {
     width:  clamp(280px, 40vh, 440px);
     height: clamp(280px, 40vh, 440px);
