@@ -19,23 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    /* Gallery tile heights -- bigger, more dramatic */
-    .gallery-item img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-    .gallery-item.tall img  { height: 400px; }
-    .gallery-item.short img { height: 190px; }
-
-    @media (min-width: 768px) {
-      .gallery-item img       { height: 310px; }
-      .gallery-item.tall img  { height: 480px; }
-      .gallery-item.short img { height: 220px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/galeria.css" />
 </head>
 <body>
 
@@ -87,139 +71,298 @@
        data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
   </div>
 
-  <!-- ── HUGE subpage hero ─────────────────────────────────────── -->
-  <div class="subpage-hero">
-    <h1 data-es="GALER&Iacute;A" data-en="GALLERY">GALER&Iacute;A</h1>
-    <p class="subpage-hero-sub"
-       data-es="El ambiente no se describe. Se vive."
-       data-en="The atmosphere doesn&apos;t translate. Come see it.">
-      El ambiente no se describe. Se vive.
-    </p>
-  </div>
-
-  <!-- ── Gallery section ──────────────────────────────────────── -->
-  <section id="galeria" class="section-wrap section-bg-dark" aria-label="Galer&iacute;a de fotos">
-    <span class="neon-divider reveal" aria-hidden="true"></span>
-
-    <div class="gallery-grid reveal">
-
-      <!-- Red-lit motorcycle crowd at venue, neon GUAU sign -- tall/hero -->
-      <div class="gallery-item tall"
-           data-caption="Bar Guau Guau de noche / Bar Guau Guau at night">
-        <img
-          src="assets/clean/sign_crowd_red.jpg"
-          alt="Multitud de motociclistas afuera de Bar Guau Guau bajo luz roja y letrero GUAU de ne&oacute;n"
-          loading="eager"
-        />
-      </div>
-
-      <!-- Neon GUAU sign + bikini mural close-up -->
-      <div class="gallery-item"
-           data-caption="Letrero de ne&oacute;n / Neon sign">
-        <img
-          src="assets/clean/sign_mural.jpg"
-          alt="Letrero de ne&oacute;n GUAU GUAU iluminado junto al mural de la fachada"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Daytime venue exterior with motorcycle -->
-      <div class="gallery-item short"
-           data-caption="Exterior de d&iacute;a / Daytime exterior">
-        <img
-          src="assets/clean/exterior_day_bike.jpg"
-          alt="Fachada de Bar Guau Guau de d&iacute;a con motocicleta estacionada"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Night exterior + bikini mural + neon -- tall -->
-      <div class="gallery-item tall"
-           data-caption="Neon de noche / Night neon">
-        <img
-          src="assets/clean/exterior_night_mural.jpg"
-          alt="Exterior de Bar Guau Guau de noche con mural y letrero de ne&oacute;n iluminado"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Three women posing in front of motorcycles -->
-      <div class="gallery-item"
-           data-caption="Ambiente / Vibe">
-        <img
-          src="assets/clean/girls_bikes.jpg"
-          alt="Tres personas posando frente a motocicletas afuera del bar"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Wide crowd shot at venue with bikes -->
-      <div class="gallery-item"
-           data-caption="Noche de Rally / Rally night">
-        <img
-          src="assets/clean/exterior_crowd_distant.jpg"
-          alt="Vista amplia de la multitud con motocicletas en Bar Guau Guau"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Rocky Point Rally outdoor stage -- tall -->
-      <div class="gallery-item tall"
-           data-caption="Rocky Point Rally">
-        <img
-          src="assets/clean/rally_stage.jpg"
-          alt="Escenario al aire libre del Rocky Point Rally con iluminaci&oacute;n de colores"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Rocky Point street with motorcycles -->
-      <div class="gallery-item short"
-           data-caption="Calle 8 de noche / Calle 8 at night">
-        <img
-          src="assets/clean/motorcycle_street.jpg"
-          alt="Calle de Puerto Pe&ntilde;asco llena de motociclistas durante el rally"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Illuminated diamond-G logo sign at night -- tall/hero -->
-      <div class="gallery-item tall"
-           data-caption="El logo / The mark">
-        <img
-          src="assets/clean/diamond_g_sign_lit.jpg"
-          alt="Logo Diamond-G de Bar Guau Guau iluminado en la noche"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Close-up of GUAU mural with bikini art -->
-      <div class="gallery-item"
-           data-caption="Mural / Mural art">
-        <img
-          src="assets/clean/mural_closeup.jpg"
-          alt="Detalle del mural exterior de Bar Guau Guau"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Red-backlit bar counter with bottles -->
-      <div class="gallery-item"
-           data-caption="La barra / The bar">
-        <img
-          src="assets/clean/bar_counter_red.jpg"
-          alt="Barra de Bar Guau Guau iluminada en rojo con botelleria alineada"
-          loading="lazy"
-        />
-      </div>
-
+  <!-- ── EDITORIAL HERO STRIP ──────────────────────────────────── -->
+  <section class="gal-hero" aria-label="Portada de galer&iacute;a">
+    <!-- Parallax image container: overflow:hidden clips the translateY shift -->
+    <div class="gal-hero-img-wrap">
+      <img
+        class="gal-hero-img"
+        src="assets/clean/diamond_g_sign_lit.jpg"
+        alt="Letrero Diamond-G de Bar Guau Guau iluminado en rojo y oro en la noche"
+        loading="eager"
+      />
+      <!-- Gradient top + bottom for cinematic depth -->
+      <div class="gal-hero-overlay" aria-hidden="true"></div>
     </div>
 
-    <div class="reveal" style="margin-top:3rem; text-align:center;">
+    <!-- Headline content sits above the image layer -->
+    <div class="gal-hero-content">
+      <p class="gal-hero-eyebrow" data-es="DETR&Aacute;S DEL NE&Oacute;N" data-en="BEHIND THE NEON">DETR&Aacute;S DEL NE&Oacute;N</p>
+      <h1 class="gal-hero-headline" data-es="NOCHES REALES" data-en="REAL NIGHTS">NOCHES REALES</h1>
+      <p class="gal-hero-sub"
+         data-es="Gente real. Sin filtros."
+         data-en="Real crowd. No filters.">
+        Gente real. Sin filtros.
+      </p>
+    </div>
+
+    <!-- Scroll cue chevron -->
+    <div class="gal-scroll-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── SECTION DIVIDER ────────────────────────────────────────── -->
+  <div class="gal-divider-wrap reveal" aria-hidden="true">
+    <span class="gal-divider-eyebrow" data-es="GALER&Iacute;A" data-en="GALLERY">GALER&Iacute;A</span>
+    <span class="gal-divider-line neon-divider"></span>
+  </div>
+
+  <!-- ── MASONRY GRID ───────────────────────────────────────────── -->
+  <section id="galeria" class="gal-section section-bg-dark" aria-label="Galer&iacute;a de fotos">
+
+    <div class="gal-masonry reveal" id="galMasonry">
+
+      <!-- sign_crowd_red: Portrait 3:4, FEATURE -->
+      <div class="gal-tile portrait feature"
+           data-index="0"
+           data-src="assets/clean/sign_crowd_red.jpg"
+           data-en="Rally weekend, full house."
+           data-es="Fin de semana del Rally, lleno.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/sign_crowd_red.jpg"
+            alt="Multitud de motociclistas afuera de Bar Guau Guau bajo luz roja y letrero GUAU de ne&oacute;n"
+            loading="eager"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Fin de semana del Rally, lleno." data-en="Rally weekend, full house.">Fin de semana del Rally, lleno.</span>
+        </div>
+      </div>
+
+      <!-- exterior_crowd_distant: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="1"
+           data-src="assets/clean/exterior_crowd_distant.jpg"
+           data-en="Saturday night."
+           data-es="S&aacute;bado por la noche.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/exterior_crowd_distant.jpg"
+            alt="Vista amplia de la multitud con motocicletas en Bar Guau Guau"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="S&aacute;bado por la noche." data-en="Saturday night.">S&aacute;bado por la noche.</span>
+        </div>
+      </div>
+
+      <!-- rally_stage: Landscape 16:10, FEATURE -->
+      <div class="gal-tile landscape feature"
+           data-index="2"
+           data-src="assets/clean/rally_stage.jpg"
+           data-en="Rocky Point Rally. Live stage."
+           data-es="Rocky Point Rally. Escenario en vivo.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/rally_stage.jpg"
+            alt="Escenario al aire libre del Rocky Point Rally con iluminaci&oacute;n de colores"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Rocky Point Rally. Escenario en vivo." data-en="Rocky Point Rally. Live stage.">Rocky Point Rally. Escenario en vivo.</span>
+        </div>
+      </div>
+
+      <!-- motorcycle_street: Landscape 16:10 -->
+      <div class="gal-tile landscape"
+           data-index="3"
+           data-src="assets/clean/motorcycle_street.jpg"
+           data-en="Calle Ferrocarrilera."
+           data-es="Calle Ferrocarrilera.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/motorcycle_street.jpg"
+            alt="Calle de Puerto Pe&ntilde;asco llena de motociclistas durante el rally"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Calle Ferrocarrilera." data-en="Calle Ferrocarrilera.">Calle Ferrocarrilera.</span>
+        </div>
+      </div>
+
+      <!-- girls_bikes: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="4"
+           data-src="assets/clean/girls_bikes.jpg"
+           data-en="The regulars."
+           data-es="Las que siempre vuelven.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/girls_bikes.jpg"
+            alt="Tres personas posando frente a motocicletas afuera del bar"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Las que siempre vuelven." data-en="The regulars.">Las que siempre vuelven.</span>
+        </div>
+      </div>
+
+      <!-- sign_mural: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="5"
+           data-src="assets/clean/sign_mural.jpg"
+           data-en="Front of house."
+           data-es="Frente de la casa.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/sign_mural.jpg"
+            alt="Letrero de ne&oacute;n GUAU GUAU iluminado junto al mural de la fachada"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Frente de la casa." data-en="Front of house.">Frente de la casa.</span>
+        </div>
+      </div>
+
+      <!-- bar_counter_red: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="6"
+           data-src="assets/clean/bar_counter_red.jpg"
+           data-en="Behind the bar."
+           data-es="Atr&aacute;s de la barra.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/bar_counter_red.jpg"
+            alt="Barra de Bar Guau Guau iluminada en rojo con boteller&iacute;a alineada"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Atr&aacute;s de la barra." data-en="Behind the bar.">Atr&aacute;s de la barra.</span>
+        </div>
+      </div>
+
+      <!-- exterior_day_bike: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="7"
+           data-src="assets/clean/exterior_day_bike.jpg"
+           data-en="Daylight."
+           data-es="Luz del d&iacute;a.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/exterior_day_bike.jpg"
+            alt="Fachada de Bar Guau Guau de d&iacute;a con motocicleta estacionada"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Luz del d&iacute;a." data-en="Daylight.">Luz del d&iacute;a.</span>
+        </div>
+      </div>
+
+      <!-- exterior_night_mural: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="8"
+           data-src="assets/clean/exterior_night_mural.jpg"
+           data-en="After dark."
+           data-es="Despu&eacute;s del anochecer.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/exterior_night_mural.jpg"
+            alt="Exterior de Bar Guau Guau de noche con mural y letrero de ne&oacute;n iluminado"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="Despu&eacute;s del anochecer." data-en="After dark.">Despu&eacute;s del anochecer.</span>
+        </div>
+      </div>
+
+      <!-- mural_closeup: Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="9"
+           data-src="assets/clean/mural_closeup.jpg"
+           data-en="Up close."
+           data-es="De cerca.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/mural_closeup.jpg"
+            alt="Detalle del mural exterior de Bar Guau Guau"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="De cerca." data-en="Up close.">De cerca.</span>
+        </div>
+      </div>
+
+      <!-- diamond_g_sign_lit (grid version): Portrait 3:4 -->
+      <div class="gal-tile portrait"
+           data-index="10"
+           data-src="assets/clean/diamond_g_sign_lit.jpg"
+           data-en="The house mark, lit."
+           data-es="La marca de la casa, encendida.">
+        <div class="gal-tile-img-wrap">
+          <img
+            src="assets/clean/diamond_g_sign_lit.jpg"
+            alt="Logo Diamond-G de Bar Guau Guau iluminado en rojo y oro en la noche"
+            loading="lazy"
+          />
+        </div>
+        <div class="gal-tile-cap" aria-hidden="true">
+          <span class="gal-tile-cap-line" aria-hidden="true"></span>
+          <span class="gal-tile-cap-text" data-es="La marca de la casa, encendida." data-en="The house mark, lit.">La marca de la casa, encendida.</span>
+        </div>
+      </div>
+
+    </div><!-- /gal-masonry -->
+
+    <div class="reveal gal-cta-wrap">
       <a href="visita.html" class="btn-primary"
          data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
     </div>
+
   </section>
+
+  <!-- ── Premium Lightbox ──────────────────────────────────────── -->
+  <div id="gal-lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada / Full image" tabindex="-1">
+    <button class="glb-close" aria-label="Cerrar / Close" type="button">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <button class="glb-prev" aria-label="Anterior / Previous" type="button">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="glb-stage">
+      <div class="glb-img-frame" id="glbImgFrame">
+        <img class="glb-img" id="glbImg" src="" alt="" />
+      </div>
+      <div class="glb-caption" id="glbCaption"></div>
+    </div>
+
+    <button class="glb-next" aria-label="Siguiente / Next" type="button">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="glb-counter" id="glbCounter" aria-live="polite">1 / 11</div>
+  </div>
 
   <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer>
@@ -264,5 +407,6 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/galeria.js"></script>
 </body>
 </html>
