@@ -10,7 +10,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://neonframewebdev.github.io/bar-guau-guau/galeria.html" />
   <meta property="og:title" content="Galer&iacute;a | Bar Guau Guau" />
-  <meta property="og:image" content="https://neonframewebdev.github.io/bar-guau-guau/assets/exterior_1.jpg" />
+  <meta property="og:image" content="https://neonframewebdev.github.io/bar-guau-guau/assets/clean/diamond_g_sign_lit.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
@@ -21,10 +21,7 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    /* Gallery item cropping: simulate cropped panels from composite photos.
-       Each .gallery-item uses a fixed height and object-position to show the
-       correct panel. interior_hero.jpg is never referenced anywhere in this file.
-    */
+    /* Gallery item sizing: clean pre-cropped panels, no object-position tricks needed. */
     .gallery-item { position: relative; }
     .gallery-item img {
       width: 100%;
@@ -100,144 +97,114 @@
       El ambiente no se describe. Se vive.
     </p>
 
-    <!-- NOTE FOR PULSE: Gallery images are composite restaurant-guru collages.
-         Halo spec calls for pre-cropped individual panels saved to assets/gallery/.
-         No cropping toolchain is available in this build environment.
-         Using object-position on the full composite to approximate the correct panel.
-         Flagged for Chad to source higher-res individual shots, or for Pulse to
-         confirm the crop approximations are presentable for demo.
-         interior_hero.jpg is not referenced anywhere in this file. -->
-
     <div class="gallery-grid reveal">
 
-      <!-- exterior_1.jpg: wide building facade with motorcycle crowd (bottom-right panel) -->
+      <!-- Red-lit motorcycle crowd at venue, neon GUAU sign -->
       <div class="gallery-item tall"
            data-caption="Bar Guau Guau de noche / Bar Guau Guau at night">
         <img
-          src="assets/exterior_1.jpg"
-          alt="Fachada de Bar Guau Guau de noche con multitud de motociclistas"
-          style="object-position: right bottom;"
+          src="assets/clean/sign_crowd_red.jpg"
+          alt="Multitud de motociclistas afuera de Bar Guau Guau bajo luz roja y letrero GUAU de ne&oacute;n"
           loading="lazy"
         />
       </div>
 
-      <!-- exterior_1.jpg: neon GUAU sign close-up (bottom-left panel) -->
+      <!-- Neon GUAU sign + bikini mural close-up -->
       <div class="gallery-item"
            data-caption="Letrero de ne&oacute;n GUAU GUAU / Neon GUAU GUAU sign">
         <img
-          src="assets/exterior_1.jpg"
-          alt="Letrero de ne&oacute;n rojo GUAU GUAU iluminado en la fachada"
-          style="object-position: left bottom;"
+          src="assets/clean/sign_mural.jpg"
+          alt="Letrero de ne&oacute;n GUAU GUAU iluminado junto al mural de la fachada"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_2.jpg: daytime exterior with diamond mural (top-left panel) -->
+      <!-- Daytime venue exterior with motorcycle -->
       <div class="gallery-item"
-           data-caption="Mural Diamond-G / Diamond-G mural">
+           data-caption="Exterior de d&iacute;a / Daytime exterior">
         <img
-          src="assets/interior_2.jpg"
-          alt="Mural del logo diamante Guau Guau en la pared exterior de d&iacute;a"
-          style="object-position: left top;"
+          src="assets/clean/exterior_day_bike.jpg"
+          alt="Fachada de Bar Guau Guau de d&iacute;a con motocicleta estacionada"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_2.jpg: nighttime exterior neon (top-right panel) -->
+      <!-- Night exterior + bikini mural + neon -->
       <div class="gallery-item tall"
            data-caption="Letrero de noche / Night sign">
         <img
-          src="assets/interior_2.jpg"
-          alt="Letrero iluminado de Guau Guau en la noche"
-          style="object-position: right top;"
+          src="assets/clean/exterior_night_mural.jpg"
+          alt="Exterior de Bar Guau Guau de noche con mural y letrero de ne&oacute;n iluminado"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_3.jpg: three women posing outside (top panel) -->
+      <!-- Three women posing in front of motorcycles -->
       <div class="gallery-item"
            data-caption="Ambiente / Vibe">
         <img
-          src="assets/interior_3.jpg"
-          alt="Tres personas posando afuera del bar con motos de fondo"
-          style="object-position: center top;"
+          src="assets/clean/girls_bikes.jpg"
+          alt="Tres personas posando frente a motocicletas afuera del bar"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_3.jpg: nighttime exterior crowd (bottom-left) -->
+      <!-- Wide crowd shot at venue with bikes -->
       <div class="gallery-item"
            data-caption="Noche de Rally / Rally night">
         <img
-          src="assets/interior_3.jpg"
-          alt="Multitud de motociclistas afuera del bar en la noche"
-          style="object-position: left bottom;"
+          src="assets/clean/exterior_crowd_distant.jpg"
+          alt="Vista amplia de la multitud con motocicletas en Bar Guau Guau"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_4.jpg: outdoor rally stage with blue/purple lighting (top-right) -->
+      <!-- Rocky Point Rally outdoor stage -->
       <div class="gallery-item tall"
            data-caption="Rocky Point Rally">
         <img
-          src="assets/interior_4.jpg"
-          alt="Escenario al aire libre con iluminaci&oacute;n azul y p&uacute;rpura durante el Rocky Point Rally"
-          style="object-position: right top;"
+          src="assets/clean/rally_stage.jpg"
+          alt="Escenario al aire libre del Rocky Point Rally con iluminaci&oacute;n de colores"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_4.jpg: balcony/rooftop with blue LED strip lighting (bottom panel) -->
-      <div class="gallery-item"
-           data-caption="Terraza / Rooftop area">
-        <img
-          src="assets/interior_4.jpg"
-          alt="Terraza con iluminaci&oacute;n LED azul y clientes sentados"
-          style="object-position: center bottom;"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- dish_1.jpg: food spread with tacos and Tecate (top panel) -->
+      <!-- Rocky Point street with motorcycles -->
       <div class="gallery-item short"
-           data-caption="Tacos y botanas / Tacos and snacks">
+           data-caption="Calle 8 de noche / Calle 8 at night">
         <img
-          src="assets/dish_1.jpg"
-          alt="Orden de tacos, botanas y cervezas Tecate en el bar"
-          style="object-position: center top;"
+          src="assets/clean/motorcycle_street.jpg"
+          alt="Calle de Puerto Pe&ntilde;asco llena de motociclistas durante el rally"
           loading="lazy"
         />
       </div>
 
-      <!-- dish_1.jpg: illuminated diamond-G sign at night (bottom-right panel) -->
+      <!-- Illuminated diamond-G logo sign at night -->
       <div class="gallery-item tall"
            data-caption="Logo iluminado / Illuminated logo">
         <img
-          src="assets/dish_1.jpg"
-          alt="Logo Diamond-G de Guau Guau iluminado de noche"
-          style="object-position: right bottom;"
+          src="assets/clean/diamond_g_sign_lit.jpg"
+          alt="Logo Diamond-G de Bar Guau Guau iluminado en la noche"
           loading="lazy"
         />
       </div>
 
-      <!-- interior_1.jpg: bar counter with backlit bottle lineup (center-left panel) -->
+      <!-- Red-backlit bar counter with bottles -->
       <div class="gallery-item"
            data-caption="La barra / The bar">
         <img
-          src="assets/interior_1.jpg"
-          alt="Barra iluminada con botelleria en Bar Guau Guau"
-          style="object-position: left center;"
+          src="assets/clean/bar_counter_red.jpg"
+          alt="Barra de Bar Guau Guau iluminada en rojo con botelleria alineada"
           loading="lazy"
         />
       </div>
 
-      <!-- exterior_1.jpg: busy street at night (top panel) -->
+      <!-- Close-up of GUAU mural with bikini art -->
       <div class="gallery-item"
-           data-caption="Calle 8 de noche / Calle 8 at night">
+           data-caption="Mural / Mural art">
         <img
-          src="assets/exterior_1.jpg"
-          alt="Calle 8 de Ferrocarrilera llena de motociclistas en la noche"
-          style="object-position: center top;"
+          src="assets/clean/mural_closeup.jpg"
+          alt="Detalle del mural exterior de Bar Guau Guau"
           loading="lazy"
         />
       </div>

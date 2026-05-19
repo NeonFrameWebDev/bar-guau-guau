@@ -22,6 +22,38 @@ All photos sourced from Restaurant Guru (restaurantguru.com/Bar-Guau-Guau-Puerto
 
 ---
 
+## Dirty originals archived 2026-05-18
+
+All Restaurant Guru composite photos had a cartoon butler mascot watermark baked in (Restaurant Guru branding overlay). Becca flagged this. Clean butler-free panels were cropped from the composites via `scripts/crop_clean_panels.py` and saved to `assets/clean/`. The dirty originals were moved to `assets/_archive/` and are no longer referenced anywhere in the site HTML.
+
+| Archived file | Reason |
+|---|---|
+| `_archive/exterior_1.jpg` | Butler watermark in top composite panel |
+| `_archive/interior_1.jpg` | Butler watermark in top composite panel; pole stage panel blocked by house rules |
+| `_archive/interior_2.jpg` | Butler watermark in bottom composite panel |
+| `_archive/interior_3.jpg` | Butler watermark in top-right composite panel |
+| `_archive/interior_4.jpg` | Butler watermark in bottom composite panel |
+| `_archive/interior_hero.jpg` | Pole stage shot; blocked by house rules |
+| `_archive/dish_1.jpg` | Butler watermark in top composite panel; food panel had low light/unusable |
+
+Clean replacements are in `assets/clean/` -- 11 butler-free panels, all real Bar Guau Guau photography. See file list below.
+
+| Clean file | Native size | Content | Used in |
+|---|---|---|---|
+| `clean/sign_mural.jpg` | 213x271 | Neon GUAU sign + bikini mural close-up | galeria.html |
+| `clean/sign_crowd_red.jpg` | 213x271 | Red-lit motorcycle crowd + neon GUAU | galeria.html |
+| `clean/bar_counter_red.jpg` | 234x310 | Red-backlit bar counter with bottles | index.html (La Casa), nosotros.html, galeria.html |
+| `clean/exterior_day_bike.jpg` | 217x310 | Daytime venue exterior with motorcycle | galeria.html |
+| `clean/exterior_night_mural.jpg` | 212x310 | Night exterior + bikini mural + neon | galeria.html |
+| `clean/girls_bikes.jpg` | 234x310 | Three women posing in front of motorcycles | galeria.html |
+| `clean/exterior_crowd_distant.jpg` | 234x310 | Wide crowd shot at venue with bikes | galeria.html |
+| `clean/mural_closeup.jpg` | 209x310 | Close-up of GUAU mural with bikini art | galeria.html |
+| `clean/motorcycle_street.jpg` | 366x213 | Rocky Point street with motorcycles | galeria.html |
+| `clean/rally_stage.jpg` | 366x213 | Rocky Point Rally outdoor stage | eventos.html (background), galeria.html |
+| `clean/diamond_g_sign_lit.jpg` | 251x310 | Illuminated diamond-G logo sign at night | og:image all pages, galeria.html |
+
+---
+
 ## Sources searched but not yielding usable assets
 
 | Source | Result |
