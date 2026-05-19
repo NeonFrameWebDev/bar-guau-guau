@@ -2300,8 +2300,8 @@ section {
   .hero-neon-pulse,
   .hero-neon-pulse::before { animation: none; opacity: 0.3; }
 
-  /* Drop the combined diamond transform+filter; keep static glow. */
-  .hero-diamond-svg { animation: none; filter: drop-shadow(0 0 6px rgba(230,0,35,0.6)); }
+  /* Stop the diamond's rotation + glow-pulse animations on mobile, but KEEP the full 4-layer static drop-shadow (the neon glow look). The animations were the cost, not the filter. */
+  .hero-diamond-svg { animation: none; }
   .diamond-main { animation: none; }
   .diamond-inner { animation: none; }
 
