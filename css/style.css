@@ -2286,3 +2286,37 @@ section {
   .open-now-dot { animation: none; }
   .scroll-cue { animation: none; }
 }
+
+/* ── Mobile perf gates ───────────────────────────────────────── */
+/* On phones, kill GPU-heavy infinite animations that aren't visible enough to justify the cost. Goal: fast scroll, no jank. */
+@media (max-width: 767px) {
+  /* Particle embers: 8 animated DOM nodes running 6-11s loops. Biggest culprit. */
+  .ember { display: none; }
+
+  /* Fullscreen noise grain texture: paint-heavy, barely visible on small screens. */
+  .hero-grain { display: none; }
+
+  /* Infinite horizontal neon sweep across hero: continuous repaint. */
+  .hero-neon-pulse,
+  .hero-neon-pulse::before { animation: none; opacity: 0.3; }
+
+  /* Drop the combined diamond transform+filter; keep static glow. */
+  .hero-diamond-svg { animation: none; filter: drop-shadow(0 0 6px rgba(230,0,35,0.6)); }
+  .diamond-main { animation: none; }
+  .diamond-inner { animation: none; }
+
+  /* Age gate background zoom: 10s ease, only meaningful on big screens. */
+  .age-gate-bg { animation: none; }
+
+  /* Slow the marquees down so they require less work per frame. */
+  .marquee-track { animation-duration: 35s; }
+  .eventos-marquee { animation-duration: 30s; }
+
+  /* Open-now pulse: stop the dot pulsing on mobile. */
+  .open-now-dot { animation: none; }
+}
+
+/* On very narrow phones, also kill the radial bloom layer. */
+@media (max-width: 480px) {
+  .hero-bloom { display: none; }
+}
