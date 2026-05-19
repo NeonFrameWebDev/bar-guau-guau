@@ -31,8 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Preload hero -->
-  <link rel="preload" as="image" href="assets/exterior_1.jpg" />
+  <!-- No hero photo preload: hero is pure CSS+SVG composition -->
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
@@ -168,16 +167,69 @@
   <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section id="hero" aria-label="Hero">
     <div class="hero-wrap">
-      <img
-        class="hero-img"
-        src="assets/exterior_1.jpg"
-        alt="Bar Guau Guau de noche con multitud de motociclistas y letrero de ne&oacute;n iluminado"
-      />
-      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <!-- Layer 1: Noise grain texture (tiled SVG as base64 data URI) -->
+      <div class="hero-grain" aria-hidden="true"></div>
+
+      <!-- Layer 2: Radial oxblood glow bloom behind centerpiece -->
+      <div class="hero-bloom" aria-hidden="true"></div>
+
+      <!-- Layer 3: Horizontal neon sweep animation -->
       <div class="hero-neon-pulse" aria-hidden="true"></div>
 
+      <!-- Layer 4: Centerpiece -- Diamond-G SVG at large scale -->
+      <div class="hero-centerpiece" aria-hidden="true">
+        <svg class="hero-diamond-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Outer glow ring (low opacity, larger polygon) -->
+          <polygon
+            class="diamond-glow-ring"
+            points="60,4 116,60 60,116 4,60"
+            stroke="rgba(230,0,35,0.18)"
+            stroke-width="1"
+            fill="none"
+          />
+          <!-- Main diamond outline -->
+          <polygon
+            class="diamond-main"
+            points="60,8 112,60 60,112 8,60"
+            stroke="#E60023"
+            stroke-width="2.5"
+            fill="none"
+          />
+          <!-- Inner diamond accent -->
+          <polygon
+            class="diamond-inner"
+            points="60,20 100,60 60,100 20,60"
+            stroke="rgba(230,0,35,0.22)"
+            stroke-width="1"
+            fill="none"
+          />
+          <!-- G letterform -->
+          <text
+            x="60" y="54"
+            font-family="'Bebas Neue', sans-serif"
+            font-size="28"
+            fill="#E60023"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            letter-spacing="0"
+          >G</text>
+          <!-- GUAU GUAU wordmark inside diamond -->
+          <text
+            x="60" y="72"
+            font-family="'Bebas Neue', sans-serif"
+            font-size="13"
+            fill="#E60023"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            letter-spacing="2"
+          >GUAU GUAU</text>
+        </svg>
+      </div>
+
+      <!-- Layer 5: Text content, CTAs -->
       <div class="hero-content">
-        <p class="hero-eyebrow">PUERTO PE&Ntilde;ASCO, SONORA</p>
+        <p class="hero-eyebrow">PUERTO PE&Ntilde;ASCO &bull; SONORA</p>
         <h1 class="hero-h1"
             data-es="La noche<br>empieza aqu&iacute;."
             data-en="The night<br>starts here.">
@@ -196,7 +248,13 @@
         </div>
       </div>
 
-      <div class="scroll-cue" aria-hidden="true">&#8964;</div>
+      <!-- Scroll cue -->
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="scroll-cue-chevron">&#8964;</span>
+        <span class="scroll-cue-label"
+              data-es="Descubre" data-en="Explore">Descubre</span>
+      </div>
+
     </div>
   </section>
 
