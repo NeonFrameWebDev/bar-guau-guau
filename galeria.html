@@ -21,20 +21,27 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    /* Gallery item sizing: clean pre-cropped panels, no object-position tricks needed. */
-    .gallery-item { position: relative; }
+    /* Gallery tile heights -- bigger, more dramatic */
     .gallery-item img {
       width: 100%;
-      height: 220px;
+      height: 260px;
       object-fit: cover;
     }
+    .gallery-item.tall img  { height: 400px; }
+    .gallery-item.short img { height: 190px; }
 
-    /* Taller items for variety */
-    .gallery-item.tall img { height: 320px; }
-    .gallery-item.short img { height: 160px; }
+    @media (min-width: 768px) {
+      .gallery-item img       { height: 310px; }
+      .gallery-item.tall img  { height: 480px; }
+      .gallery-item.short img { height: 220px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ── Custom Cursor ─────────────────────────────────────────── -->
+  <div id="custom-cursor" aria-hidden="true"></div>
+  <div id="custom-cursor-dot" aria-hidden="true"></div>
 
   <!-- ── Nav ──────────────────────────────────────────────────── -->
   <nav role="navigation" aria-label="Navegaci&oacute;n principal">
@@ -57,7 +64,7 @@
       </ul>
 
       <button class="lang-toggle" aria-label="Switch to English" type="button">
-        <span class="lt-flag">🇺🇸</span>
+        <span class="lt-flag">&#x1F1FA;&#x1F1F8;</span>
         <span class="lt-label">English</span>
       </button>
 
@@ -84,34 +91,35 @@
        data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
   </div>
 
-  <!-- ── Sub-page hero ─────────────────────────────────────────── -->
+  <!-- ── HUGE subpage hero ─────────────────────────────────────── -->
   <div class="subpage-hero">
     <h1 data-es="GALER&Iacute;A" data-en="GALLERY">GALER&Iacute;A</h1>
-  </div>
-
-  <!-- ── Gallery section ──────────────────────────────────────── -->
-  <section id="galeria" class="section-wrap section-bg-dark" aria-label="Galer&iacute;a de fotos">
-    <p class="reveal" style="margin-bottom:2rem; font-family:var(--font-display); font-size:1.2rem; color:var(--text-muted); letter-spacing:0.05em;"
+    <p class="subpage-hero-sub"
        data-es="El ambiente no se describe. Se vive."
        data-en="The atmosphere doesn&apos;t translate. Come see it.">
       El ambiente no se describe. Se vive.
     </p>
+  </div>
+
+  <!-- ── Gallery section ──────────────────────────────────────── -->
+  <section id="galeria" class="section-wrap section-bg-dark" aria-label="Galer&iacute;a de fotos">
+    <span class="neon-divider reveal" aria-hidden="true"></span>
 
     <div class="gallery-grid reveal">
 
-      <!-- Red-lit motorcycle crowd at venue, neon GUAU sign -->
+      <!-- Red-lit motorcycle crowd at venue, neon GUAU sign -- tall/hero -->
       <div class="gallery-item tall"
            data-caption="Bar Guau Guau de noche / Bar Guau Guau at night">
         <img
           src="assets/clean/sign_crowd_red.jpg"
           alt="Multitud de motociclistas afuera de Bar Guau Guau bajo luz roja y letrero GUAU de ne&oacute;n"
-          loading="lazy"
+          loading="eager"
         />
       </div>
 
       <!-- Neon GUAU sign + bikini mural close-up -->
       <div class="gallery-item"
-           data-caption="Letrero de ne&oacute;n GUAU GUAU / Neon GUAU GUAU sign">
+           data-caption="Letrero de ne&oacute;n / Neon sign">
         <img
           src="assets/clean/sign_mural.jpg"
           alt="Letrero de ne&oacute;n GUAU GUAU iluminado junto al mural de la fachada"
@@ -120,7 +128,7 @@
       </div>
 
       <!-- Daytime venue exterior with motorcycle -->
-      <div class="gallery-item"
+      <div class="gallery-item short"
            data-caption="Exterior de d&iacute;a / Daytime exterior">
         <img
           src="assets/clean/exterior_day_bike.jpg"
@@ -129,9 +137,9 @@
         />
       </div>
 
-      <!-- Night exterior + bikini mural + neon -->
+      <!-- Night exterior + bikini mural + neon -- tall -->
       <div class="gallery-item tall"
-           data-caption="Letrero de noche / Night sign">
+           data-caption="Neon de noche / Night neon">
         <img
           src="assets/clean/exterior_night_mural.jpg"
           alt="Exterior de Bar Guau Guau de noche con mural y letrero de ne&oacute;n iluminado"
@@ -159,7 +167,7 @@
         />
       </div>
 
-      <!-- Rocky Point Rally outdoor stage -->
+      <!-- Rocky Point Rally outdoor stage -- tall -->
       <div class="gallery-item tall"
            data-caption="Rocky Point Rally">
         <img
@@ -179,22 +187,12 @@
         />
       </div>
 
-      <!-- Illuminated diamond-G logo sign at night -->
+      <!-- Illuminated diamond-G logo sign at night -- tall/hero -->
       <div class="gallery-item tall"
-           data-caption="Logo iluminado / Illuminated logo">
+           data-caption="El logo / The mark">
         <img
           src="assets/clean/diamond_g_sign_lit.jpg"
           alt="Logo Diamond-G de Bar Guau Guau iluminado en la noche"
-          loading="lazy"
-        />
-      </div>
-
-      <!-- Red-backlit bar counter with bottles -->
-      <div class="gallery-item"
-           data-caption="La barra / The bar">
-        <img
-          src="assets/clean/bar_counter_red.jpg"
-          alt="Barra de Bar Guau Guau iluminada en rojo con botelleria alineada"
           loading="lazy"
         />
       </div>
@@ -209,12 +207,32 @@
         />
       </div>
 
+      <!-- Red-backlit bar counter with bottles -->
+      <div class="gallery-item"
+           data-caption="La barra / The bar">
+        <img
+          src="assets/clean/bar_counter_red.jpg"
+          alt="Barra de Bar Guau Guau iluminada en rojo con botelleria alineada"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+
+    <div class="reveal" style="margin-top:3rem; text-align:center;">
+      <a href="visita.html" class="btn-primary"
+         data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
     </div>
   </section>
 
   <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer>
     <div class="footer-left">
+      <svg class="footer-diamond-mark" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2.5" fill="none"/>
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+        <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+      </svg>
       <p class="footer-brand">GUAU GUAU</p>
       <p class="footer-copy">
         &copy; <span class="copyright-year"></span> Bar Guau Guau. Puerto Pe&ntilde;asco, Sonora.<br />
@@ -222,20 +240,22 @@
       </p>
     </div>
     <div class="footer-center">
-      <p class="footer-disclaimer"
-         data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
-         data-en="Adults 18+ only. Please drink responsibly.">
-        Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+      <p class="footer-disclaimer">
+        <span class="footer-disclaimer-dot" aria-hidden="true"></span>
+        <span data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
+              data-en="Adults 18+ only. Please drink responsibly.">
+          Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+        </span>
       </p>
     </div>
     <div class="footer-right">
       <div class="footer-socials">
-        <a href="#" class="footer-social-link" aria-label="Facebook [handle TBD]" title="Facebook [copy needed: handle]">
+        <a href="#" class="footer-social-link" aria-label="Facebook [handle TBD]" title="Facebook">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
           </svg>
         </a>
-        <a href="#" class="footer-social-link" aria-label="Instagram [handle TBD]" title="Instagram [copy needed: handle]">
+        <a href="#" class="footer-social-link" aria-label="Instagram [handle TBD]" title="Instagram">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>

@@ -1,36 +1,125 @@
-/* Bar Guau Guau - main.js
-   Handles: age-gate, loader, nav hamburger, parallax (desktop only),
-   scroll reveal with stagger, gallery lightbox, scroll cue.
+/* Bar Guau Guau - main.js MAX EFFORT UPGRADE
+   Handles: branded loader, age-gate, custom cursor, nav,
+   parallax, ember particles, mouse glow, scroll reveal + stagger,
+   gallery lightbox, event tonight highlight, open-now badge,
+   neon divider reveals, scroll cue, nav scroll class, footer year.
 */
 "use strict";
+
+/* ── Utilities ───────────────────────────────────────────────── */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/* ── Branded Loader (first visit only) ──────────────────────── */
+(function initLoader() {
+  const loader = document.getElementById("loader");
+  if (!loader) return;
+
+  // Return visits: skip the cinematic intro
+  const isReturn = localStorage.getItem("ggAgePassed") === "1";
+
+  if (isReturn) {
+    // Minimal load: just remove loader quickly
+    const bar = loader.querySelector(".loader-bar-fill");
+    let p = 0;
+    const t = setInterval(() => {
+      p += 20;
+      if (bar) bar.style.width = Math.min(p, 100) + "%";
+      if (p >= 100) {
+        clearInterval(t);
+        setTimeout(() => {
+          loader.classList.add("fade-out");
+          setTimeout(() => {
+            loader.style.display = "none";
+            document.body.classList.remove("loading");
+          }, 500);
+        }, 100);
+      }
+    }, 40);
+    return;
+  }
+
+  // First visit: cinematic 2.2s intro
+  // Diamond draws at 0.1s (CSS), G + wordmark fade at 1.2s/1.5s (CSS)
+  // Flash fires at 2.0s (CSS) -- we just control the progress bar
+  const bar = loader.querySelector(".loader-bar-fill");
+  let p = 0;
+  const duration = 2200; // ms total
+  const intervalMs = 40;
+  const steps = duration / intervalMs;
+  const increment = 100 / steps;
+
+  const t = setInterval(() => {
+    p += increment;
+    if (bar) bar.style.width = Math.min(p, 90) + "%"; // stop at 90, jump to 100 at end
+    if (p >= 100) {
+      clearInterval(t);
+      if (bar) bar.style.width = "100%";
+    }
+  }, intervalMs);
+
+  // Loader exits after age-enter click (age gate flow) -- see age gate
+  // But if no age gate (other pages), auto-exit after 2.4s
+  const gate = document.getElementById("age-gate");
+  if (!gate) {
+    setTimeout(() => {
+      if (bar) bar.style.width = "100%";
+      setTimeout(() => {
+        loader.classList.add("fade-out");
+        setTimeout(() => {
+          loader.style.display = "none";
+          document.body.classList.remove("loading");
+        }, 500);
+      }, 200);
+    }, 2400);
+  }
+})();
 
 /* ── Age Gate ─────────────────────────────────────────────── */
 (function initAgeGate() {
   const gate = document.getElementById("age-gate");
   if (!gate) return;
 
-  // Check localStorage before showing anything
   if (localStorage.getItem("ggAgePassed") === "1") {
     gate.style.display = "none";
     document.body.style.overflow = "";
     return;
   }
 
-  // Gate is visible: lock scroll
   document.body.style.overflow = "hidden";
 
   const enterBtn = document.getElementById("age-enter");
   const exitBtn = document.getElementById("age-exit");
+  const loader = document.getElementById("loader");
 
   if (enterBtn) {
     enterBtn.addEventListener("click", () => {
       localStorage.setItem("ggAgePassed", "1");
-      gate.style.transition = "opacity 0.4s ease";
+      gate.style.transition = "opacity 0.45s ease";
       gate.style.opacity = "0";
       setTimeout(() => {
         gate.style.display = "none";
         document.body.style.overflow = "";
-      }, 420);
+        // Now run the loader for first visit
+        if (loader) {
+          const bar = loader.querySelector(".loader-bar-fill");
+          let p = 0;
+          const t = setInterval(() => {
+            p += 12;
+            if (bar) bar.style.width = Math.min(p, 100) + "%";
+            if (p >= 100) {
+              clearInterval(t);
+              setTimeout(() => {
+                loader.classList.add("fade-out");
+                setTimeout(() => {
+                  loader.style.display = "none";
+                  document.body.classList.remove("loading");
+                }, 500);
+              }, 150);
+            }
+          }, 60);
+        }
+      }, 460);
     });
   }
 
@@ -41,52 +130,67 @@
   }
 })();
 
-/* ── Loader ─────────────────────────────────────────────────── */
-(function initLoader() {
-  const loader = document.getElementById("loader");
-  if (!loader) return;
+/* ── Custom Cursor (desktop only) ──────────────────────────── */
+(function initCursor() {
+  // Only run on hover-capable devices
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-  // Do not run loader logic until age gate is cleared
-  function runLoader() {
-    const bar = loader.querySelector(".loader-bar-fill");
-    let progress = 0;
-    const tick = setInterval(() => {
-      progress += 7;
-      if (bar) bar.style.width = Math.min(progress, 100) + "%";
-      if (progress >= 100) {
-        clearInterval(tick);
-        setTimeout(() => {
-          loader.classList.add("fade-out");
-          loader.style.pointerEvents = "none";
-          setTimeout(() => {
-            loader.style.display = "none";
-            document.body.classList.remove("loading");
-          }, 400);
-        }, 150);
-      }
-    }, 80);
+  const ring = document.getElementById("custom-cursor");
+  const dot = document.getElementById("custom-cursor-dot");
+  if (!ring || !dot) return;
+
+  let mx = -100, my = -100;
+  let cx = -100, cy = -100;
+  let raf;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animate() {
+    cx = lerp(cx, mx, 0.14);
+    cy = lerp(cy, my, 0.14);
+    ring.style.left = cx + "px";
+    ring.style.top  = cy + "px";
+    dot.style.left  = mx + "px";
+    dot.style.top   = my + "px";
+    raf = requestAnimationFrame(animate);
   }
 
-  // If age gate already passed (return visitor), run loader immediately
-  if (localStorage.getItem("ggAgePassed") === "1") {
-    runLoader();
-    return;
-  }
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
 
-  // First visit: wait for age gate exit, then run loader
-  const enterBtn = document.getElementById("age-enter");
-  if (enterBtn) {
-    enterBtn.addEventListener("click", () => {
-      setTimeout(runLoader, 450);
-    });
-  } else {
-    runLoader();
-  }
+  document.addEventListener("mouseleave", () => {
+    ring.style.opacity = "0";
+    dot.style.opacity = "0";
+  });
+
+  document.addEventListener("mouseenter", () => {
+    ring.style.opacity = "1";
+    dot.style.opacity = "1";
+  });
+
+  // Expand on interactive elements
+  const interactors = "a, button, .gallery-item, .event-card-full, .drink-card, .btn-primary, .btn-ghost, #age-enter, #age-exit";
+
+  document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(interactors)) {
+      ring.classList.add("expanded");
+    }
+  });
+
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(interactors)) {
+      ring.classList.remove("expanded");
+    }
+  });
+
+  animate();
 })();
 
 /* ── Nav Hamburger ──────────────────────────────────────────── */
 (function initNav() {
-  const ham = document.querySelector(".nav-hamburger");
+  const ham = $(".nav-hamburger");
   const drawer = document.getElementById("nav-drawer");
   if (!ham || !drawer) return;
 
@@ -97,7 +201,7 @@
     drawer.classList.toggle("open", !open);
   });
 
-  drawer.querySelectorAll("a").forEach((a) => {
+  $$("a", drawer).forEach((a) => {
     a.addEventListener("click", () => {
       ham.setAttribute("aria-expanded", "false");
       ham.classList.remove("open");
@@ -106,79 +210,106 @@
   });
 })();
 
-/* ── Parallax (desktop only) ────────────────────────────────── */
-(function initParallax() {
-  const heroImg = document.querySelector(".hero-img");
-  if (!heroImg) return;
+/* ── Nav scroll class ────────────────────────────────────────── */
+(function initNavScroll() {
+  const nav = $("nav");
+  if (!nav) return;
+  window.addEventListener("scroll", () => {
+    nav.classList.toggle("scrolled", window.scrollY > 60);
+  }, { passive: true });
+})();
 
-  // Gate: desktop only, no will-change on mobile (compositing layer memory)
-  if (window.innerWidth < 768) return;
+/* ── Mouse glow on hero (desktop only) ──────────────────────── */
+(function initMouseGlow() {
+  const hero = document.getElementById("hero");
+  if (!hero) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-  heroImg.style.willChange = "transform";
+  const glowEl = hero.querySelector(".hero-mouse-glow");
+  if (!glowEl) return;
 
-  function onScroll() {
-    const y = window.scrollY;
-    heroImg.style.transform = "translateY(" + (y * 0.3) + "px)";
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
+  let entered = false;
+  hero.addEventListener("mouseenter", () => {
+    entered = true;
+    glowEl.style.opacity = "1";
+  });
+  hero.addEventListener("mouseleave", () => {
+    entered = false;
+    glowEl.style.opacity = "0";
+  });
+  hero.addEventListener("mousemove", (e) => {
+    if (!entered) return;
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    glowEl.style.background = `radial-gradient(circle 220px at ${x}% ${y}%, rgba(230,0,35,0.1) 0%, transparent 70%)`;
+  });
 })();
 
 /* ── Scroll Cue (bounce arrow) ──────────────────────────────── */
 (function initScrollCue() {
-  const cue = document.querySelector(".scroll-cue");
+  const cue = $(".scroll-cue");
   if (!cue) return;
-
-  function checkScroll() {
-    if (window.scrollY > 100) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 80) {
       cue.style.opacity = "0";
       cue.style.pointerEvents = "none";
     } else {
       cue.style.opacity = "1";
       cue.style.pointerEvents = "auto";
     }
-  }
-
-  window.addEventListener("scroll", checkScroll, { passive: true });
+  }, { passive: true });
 })();
 
-/* ── Scroll Reveal ──────────────────────────────────────────── */
+/* ── Scroll Reveal + Stagger ────────────────────────────────── */
 (function initReveal() {
-  const items = document.querySelectorAll(".reveal");
+  const items = $$(".reveal");
   if (!items.length) return;
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("revealed");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("revealed");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
 
   items.forEach((el) => io.observe(el));
 
   // Stagger child cards
-  document.querySelectorAll(".stagger-parent").forEach((parent) => {
-    const children = parent.querySelectorAll(".stagger-child");
-    children.forEach((child, i) => {
-      child.style.transitionDelay = (i * 80) + "ms";
+  $$(".stagger-parent").forEach((parent) => {
+    $$(".stagger-child", parent).forEach((child, i) => {
+      child.style.transitionDelay = (i * 90) + "ms";
     });
   });
 })();
 
-/* ── Gallery Lightbox ───────────────────────────────────────── */
+/* ── Neon Divider reveal ─────────────────────────────────────── */
+(function initNeonDividers() {
+  const dividers = $$(".neon-divider");
+  if (!dividers.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("revealed");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  dividers.forEach((d) => io.observe(d));
+})();
+
+/* ── Gallery Lightbox (upgraded) ────────────────────────────── */
 (function initLightbox() {
-  const gallery = document.querySelector(".gallery-grid");
+  const gallery = $(".gallery-grid");
   if (!gallery) return;
 
-  const allItems = gallery.querySelectorAll(".gallery-item");
+  const allItems = $$(".gallery-item", gallery);
   let currentIndex = 0;
 
-  // Build lightbox DOM
   const overlay = document.createElement("div");
   overlay.id = "lightbox";
   overlay.setAttribute("role", "dialog");
@@ -187,24 +318,36 @@
   overlay.innerHTML = `
     <button class="lb-close" aria-label="Cerrar / Close">&#10005;</button>
     <button class="lb-prev" aria-label="Anterior / Previous">&#8592;</button>
-    <img class="lb-img" src="" alt="" />
+    <div class="lb-img-wrap">
+      <img class="lb-img" src="" alt="" />
+      <div class="lb-caption"></div>
+    </div>
     <button class="lb-next" aria-label="Siguiente / Next">&#8594;</button>
   `;
   document.body.appendChild(overlay);
 
-  const lbImg = overlay.querySelector(".lb-img");
-  const lbClose = overlay.querySelector(".lb-close");
-  const lbPrev = overlay.querySelector(".lb-prev");
-  const lbNext = overlay.querySelector(".lb-next");
+  const lbImgWrap = overlay.querySelector(".lb-img-wrap");
+  const lbImg     = overlay.querySelector(".lb-img");
+  const lbCaption = overlay.querySelector(".lb-caption");
+  const lbClose   = overlay.querySelector(".lb-close");
+  const lbPrev    = overlay.querySelector(".lb-prev");
+  const lbNext    = overlay.querySelector(".lb-next");
 
   function openLb(index) {
     currentIndex = index;
     const item = allItems[currentIndex];
-    const img = item.querySelector("img");
-    lbImg.src = img.src;
-    lbImg.alt = img.alt || "";
+    const img  = $("img", item);
+    lbImg.src  = img ? img.src : "";
+    lbImg.alt  = img ? (img.alt || "") : "";
+    lbCaption.textContent = item.dataset.caption || "";
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
+
+    // Reset animation
+    lbImgWrap.style.animation = "none";
+    lbImgWrap.offsetHeight; // reflow
+    lbImgWrap.style.animation = "";
+
     lbClose.focus();
   }
 
@@ -214,77 +357,124 @@
     lbImg.src = "";
   }
 
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+  function navigate(dir) {
+    currentIndex = (currentIndex + dir + allItems.length) % allItems.length;
     const item = allItems[currentIndex];
-    const img = item.querySelector("img");
-    lbImg.src = img.src;
-    lbImg.alt = img.alt || "";
+    const img  = $("img", item);
+    // Quick swap with micro-animation
+    lbImg.style.opacity = "0";
+    lbImg.style.transform = dir > 0 ? "translateX(20px)" : "translateX(-20px)";
+    setTimeout(() => {
+      lbImg.src = img ? img.src : "";
+      lbImg.alt = img ? (img.alt || "") : "";
+      lbCaption.textContent = item.dataset.caption || "";
+      lbImg.style.transition = "opacity 0.25s ease, transform 0.25s ease";
+      lbImg.style.opacity = "1";
+      lbImg.style.transform = "translateX(0)";
+    }, 140);
   }
 
-  function showNext() {
-    currentIndex = (currentIndex + 1) % allItems.length;
-    const item = allItems[currentIndex];
-    const img = item.querySelector("img");
-    lbImg.src = img.src;
-    lbImg.alt = img.alt || "";
-  }
-
+  // Inject caption overlays and wire clicks
   allItems.forEach((item, i) => {
     item.setAttribute("tabindex", "0");
     item.setAttribute("role", "button");
+    item.setAttribute("aria-label", `Ver foto: ${item.dataset.caption || (i + 1)}`);
+
+    // Build caption overlay HTML if not already there
+    if (!$(".gallery-caption-overlay", item)) {
+      const captDiv = document.createElement("div");
+      captDiv.className = "gallery-caption-overlay";
+      const captSpan = document.createElement("span");
+      captSpan.className = "gallery-caption-text";
+      captSpan.textContent = item.dataset.caption || "";
+      captDiv.appendChild(captSpan);
+      item.appendChild(captDiv);
+    }
 
     const activate = () => openLb(i);
     item.addEventListener("click", activate);
     item.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        activate();
-      }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
     });
   });
 
   lbClose.addEventListener("click", closeLb);
-  lbPrev.addEventListener("click", showPrev);
-  lbNext.addEventListener("click", showNext);
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) closeLb();
-  });
-
+  lbPrev.addEventListener("click", () => navigate(-1));
+  lbNext.addEventListener("click", () => navigate(1));
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeLb(); });
   document.addEventListener("keydown", (e) => {
     if (!overlay.classList.contains("open")) return;
-    if (e.key === "Escape") closeLb();
-    if (e.key === "ArrowLeft") showPrev();
-    if (e.key === "ArrowRight") showNext();
+    if (e.key === "Escape")     closeLb();
+    if (e.key === "ArrowLeft")  navigate(-1);
+    if (e.key === "ArrowRight") navigate(1);
   });
 })();
 
-/* ── Nav active section highlight ───────────────────────────── */
+/* ── Event card "Tonight" highlight ─────────────────────────── */
+(function initTonightHighlight() {
+  const cards = $$(".event-card-full[data-day]");
+  if (!cards.length) return;
+
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+
+  // Map day numbers to our event data-day values
+  const dayMap = {
+    1: "monday",
+    2: "tuesday",
+    5: "friday",
+    6: "saturday",
+    0: "sunday"
+  };
+
+  const todayKey = dayMap[dayOfWeek];
+
+  cards.forEach((card) => {
+    if (card.dataset.day === todayKey) {
+      card.classList.add("tonight");
+    }
+  });
+})();
+
+/* ── Open Now badge ──────────────────────────────────────────── */
+(function initOpenNow() {
+  const badges = $$(".open-now-badge");
+  if (!badges.length) return;
+
+  const now   = new Date();
+  const hour  = now.getHours(); // 0-23
+  // Open 7 PM (19) to 3 AM (3)
+  const isOpen = hour >= 19 || hour < 3;
+
+  badges.forEach((badge) => {
+    if (isOpen) {
+      badge.classList.add("visible");
+    }
+  });
+})();
+
+/* ── Nav active section highlight ────────────────────────────── */
 (function initNavActive() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+  const sections = $$("section[id]");
+  const navLinks = $$(".nav-links a[href^='#']");
   if (!sections.length || !navLinks.length) return;
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        navLinks.forEach((a) => {
-          a.classList.toggle("active", a.getAttribute("href") === "#" + id);
-        });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id;
+      navLinks.forEach((a) => {
+        a.classList.toggle("active", a.getAttribute("href") === "#" + id);
       });
-    },
-    { rootMargin: "-40% 0px -55% 0px" }
-  );
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
 
   sections.forEach((s) => io.observe(s));
 })();
 
 /* ── Footer year ─────────────────────────────────────────────── */
 (function setYear() {
-  document.querySelectorAll(".copyright-year").forEach((el) => {
+  $$(".copyright-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
 })();

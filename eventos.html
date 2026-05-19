@@ -22,6 +22,10 @@
 </head>
 <body>
 
+  <!-- ── Custom Cursor ─────────────────────────────────────────── -->
+  <div id="custom-cursor" aria-hidden="true"></div>
+  <div id="custom-cursor-dot" aria-hidden="true"></div>
+
   <!-- ── Nav ──────────────────────────────────────────────────── -->
   <nav role="navigation" aria-label="Navegaci&oacute;n principal">
     <a href="index.html" class="nav-logo" aria-label="Bar Guau Guau inicio">
@@ -43,7 +47,7 @@
       </ul>
 
       <button class="lang-toggle" aria-label="Switch to English" type="button">
-        <span class="lt-flag">🇺🇸</span>
+        <span class="lt-flag">&#x1F1FA;&#x1F1F8;</span>
         <span class="lt-label">English</span>
       </button>
 
@@ -70,38 +74,63 @@
        data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
   </div>
 
-  <!-- ── Sub-page hero ─────────────────────────────────────────── -->
+  <!-- ── HUGE subpage hero ─────────────────────────────────────── -->
   <div class="subpage-hero">
     <span class="eyebrow"
           data-es="CADA SEMANA" data-en="EVERY WEEK">CADA SEMANA</span>
     <h1 data-es="EVENTOS" data-en="EVENTS">EVENTOS</h1>
+    <p class="subpage-hero-sub"
+       data-es="7 PM hasta las 3 AM. Todas las noches."
+       data-en="7 PM to 3 AM. Every night.">
+      7 PM hasta las 3 AM. Todas las noches.
+    </p>
+  </div>
+
+  <!-- ── Marquee text strip ─────────────────────────────────────── -->
+  <div class="eventos-marquee-wrap" aria-hidden="true">
+    <div class="eventos-marquee">
+      <span>BIKE NIGHT</span>
+      <span>&bull;</span>
+      <span>NOCHE DE DAMAS</span>
+      <span>&bull;</span>
+      <span>WEEKEND DJ</span>
+      <span>&bull;</span>
+      <span>ROCKY POINT RALLY</span>
+      <span>&bull;</span>
+      <span>BIKE NIGHT</span>
+      <span>&bull;</span>
+      <span>NOCHE DE DAMAS</span>
+      <span>&bull;</span>
+      <span>WEEKEND DJ</span>
+      <span>&bull;</span>
+      <span>ROCKY POINT RALLY</span>
+      <span>&bull;</span>
+    </div>
   </div>
 
   <!-- ── Events section ───────────────────────────────────────── -->
-  <section id="eventos" class="section-wrap eventos-section" aria-label="Eventos semanales">
-    <!-- Background photo: Rocky Point Rally outdoor stage -->
-    <img
-      class="eventos-bg-photo"
-      src="assets/clean/rally_stage.jpg"
-      alt=""
-      aria-hidden="true"
-      loading="lazy"
-    />
-    <div class="eventos-bg-overlay" aria-hidden="true"></div>
+  <section id="eventos" class="section-wrap section-bg-dark eventos-section" aria-label="Eventos semanales">
+    <span class="neon-divider reveal" aria-hidden="true"></span>
 
-    <div class="eventos-content">
-      <span class="gold-rule" aria-hidden="true"></span>
+    <p class="eventos-intro reveal"
+       data-es="Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo."
+       data-en="Something&apos;s going on every week. Check the lineup and get here early.">
+      Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo.
+    </p>
 
-      <p class="eventos-intro reveal"
-         data-es="Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo."
-         data-en="Something&apos;s going on every week. Check the lineup and get here early.">
-        Algo pasa aqu&iacute; cada semana. Checa el calendario y llega a tiempo.
-      </p>
+    <div class="eventos-grid stagger-parent">
 
-      <div class="eventos-grid stagger-parent">
-
-        <!-- Bike Night -->
-        <div class="event-card stagger-child reveal">
+      <!-- Bike Night (Lunes / Monday) -->
+      <div class="event-card-full stagger-child reveal" data-day="monday">
+        <span class="tonight-pill"
+              data-es="ESTA NOCHE" data-en="TONIGHT">ESTA NOCHE</span>
+        <img class="event-card-bg"
+             src="assets/clean/motorcycle_street.jpg"
+             alt=""
+             aria-hidden="true"
+             loading="lazy" />
+        <div class="event-card-overlay" aria-hidden="true"></div>
+        <div class="event-card-body">
           <span class="event-card-eyebrow"
                 data-es="CADA SEMANA" data-en="EVERY WEEK">CADA SEMANA</span>
           <p class="event-card-day"
@@ -114,9 +143,19 @@
             Para la banda sobre dos ruedas. Llega en moto, recibe la bienvenida. M&uacute;sica en vivo, ambiente de Rally toda la noche. Todos los lunes. 7 PM.
           </p>
         </div>
+      </div>
 
-        <!-- Noche de Damas -->
-        <div class="event-card stagger-child reveal">
+      <!-- Noche de Damas (Martes / Tuesday) -->
+      <div class="event-card-full stagger-child reveal" data-day="tuesday">
+        <span class="tonight-pill"
+              data-es="ESTA NOCHE" data-en="TONIGHT">ESTA NOCHE</span>
+        <img class="event-card-bg"
+             src="assets/clean/sign_crowd_red.jpg"
+             alt=""
+             aria-hidden="true"
+             loading="lazy" />
+        <div class="event-card-overlay" aria-hidden="true"></div>
+        <div class="event-card-body">
           <span class="event-card-eyebrow"
                 data-es="CADA SEMANA" data-en="EVERY WEEK">CADA SEMANA</span>
           <p class="event-card-day"
@@ -129,9 +168,19 @@
             Las chicas entran sin costo. Tragos especiales para ellas toda la noche. Buena m&uacute;sica, mejor ambiente. Todos los martes. 7 PM.
           </p>
         </div>
+      </div>
 
-        <!-- Fin de Semana -->
-        <div class="event-card stagger-child reveal">
+      <!-- El Fin (Viernes a Domingo) -->
+      <div class="event-card-full stagger-child reveal" data-day="friday">
+        <span class="tonight-pill"
+              data-es="ESTA NOCHE" data-en="TONIGHT">ESTA NOCHE</span>
+        <img class="event-card-bg"
+             src="assets/clean/exterior_crowd_distant.jpg"
+             alt=""
+             aria-hidden="true"
+             loading="lazy" />
+        <div class="event-card-overlay" aria-hidden="true"></div>
+        <div class="event-card-body">
           <span class="event-card-eyebrow"
                 data-es="FIN DE SEMANA" data-en="WEEKEND">FIN DE SEMANA</span>
           <p class="event-card-day"
@@ -144,9 +193,17 @@
             DJ en vivo. Espect&aacute;culos en vivo. La semana se pag&oacute;, ahora es tiempo de disfrutarla. Viernes, s&aacute;bado y domingo. 7 PM a 3 AM.
           </p>
         </div>
+      </div>
 
-        <!-- Rocky Point Rally special event -->
-        <div class="event-card stagger-child reveal">
+      <!-- Rocky Point Rally -->
+      <div class="event-card-full stagger-child reveal">
+        <img class="event-card-bg"
+             src="assets/clean/rally_stage.jpg"
+             alt=""
+             aria-hidden="true"
+             loading="lazy" />
+        <div class="event-card-overlay" aria-hidden="true"></div>
+        <div class="event-card-body">
           <span class="event-card-eyebrow"
                 data-es="EVENTO ESPECIAL" data-en="SPECIAL EVENT">EVENTO ESPECIAL</span>
           <p class="event-card-day"
@@ -159,25 +216,30 @@
             El rally llega a Pe&ntilde;asco y el Guau Guau se convierte en el epicentro. Motos, m&uacute;sica en vivo y la noche m&aacute;s larga del a&ntilde;o.
           </p>
         </div>
-
       </div>
 
-      <div class="reveal" style="margin-top:2.5rem;">
-        <a href="visita.html" class="btn-primary"
-           data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
-      </div>
-
-      <p class="reveal" style="margin-top:1rem; font-size:0.8rem; color:var(--text-muted);"
-         data-es="Programaci&oacute;n sujeta a cambios. Confirma con el bar antes de tu visita."
-         data-en="Schedule subject to change. Confirm with the bar before your visit.">
-        Programaci&oacute;n sujeta a cambios. Confirma con el bar antes de tu visita.
-      </p>
     </div>
+
+    <div class="reveal" style="margin-top:3rem;">
+      <a href="visita.html" class="btn-primary"
+         data-es="Reservar mesa" data-en="Reserve a table">Reservar mesa</a>
+    </div>
+
+    <p class="reveal" style="margin-top:1.25rem; font-size:0.8rem; color:var(--text-muted);"
+       data-es="Programaci&oacute;n sujeta a cambios. Confirma con el bar antes de tu visita."
+       data-en="Schedule subject to change. Confirm with the bar before your visit.">
+      Programaci&oacute;n sujeta a cambios. Confirma con el bar antes de tu visita.
+    </p>
   </section>
 
   <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer>
     <div class="footer-left">
+      <svg class="footer-diamond-mark" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2.5" fill="none"/>
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+        <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+      </svg>
       <p class="footer-brand">GUAU GUAU</p>
       <p class="footer-copy">
         &copy; <span class="copyright-year"></span> Bar Guau Guau. Puerto Pe&ntilde;asco, Sonora.<br />
@@ -185,20 +247,22 @@
       </p>
     </div>
     <div class="footer-center">
-      <p class="footer-disclaimer"
-         data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
-         data-en="Adults 18+ only. Please drink responsibly.">
-        Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+      <p class="footer-disclaimer">
+        <span class="footer-disclaimer-dot" aria-hidden="true"></span>
+        <span data-es="Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol."
+              data-en="Adults 18+ only. Please drink responsibly.">
+          Solo mayores de 18 a&ntilde;os. Consumo responsable de alcohol.
+        </span>
       </p>
     </div>
     <div class="footer-right">
       <div class="footer-socials">
-        <a href="#" class="footer-social-link" aria-label="Facebook [handle TBD]" title="Facebook [copy needed: handle]">
+        <a href="#" class="footer-social-link" aria-label="Facebook [handle TBD]" title="Facebook">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
           </svg>
         </a>
-        <a href="#" class="footer-social-link" aria-label="Instagram [handle TBD]" title="Instagram [copy needed: handle]">
+        <a href="#" class="footer-social-link" aria-label="Instagram [handle TBD]" title="Instagram">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -211,5 +275,21 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    // Wire saturday/sunday to also trigger the weekend card
+    (function() {
+      const now = new Date();
+      const day = now.getDay();
+      if (day === 6) { // Saturday
+        const cards = document.querySelectorAll('.event-card-full[data-day="friday"]');
+        cards.forEach(c => c.classList.add('tonight'));
+      }
+      if (day === 0) { // Sunday
+        const cards = document.querySelectorAll('.event-card-full[data-day="friday"]');
+        cards.forEach(c => c.classList.add('tonight'));
+      }
+    })();
+  </script>
 </body>
 </html>
