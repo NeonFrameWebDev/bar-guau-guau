@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:600px;height:900px;overflow:hidden;background:#0A0A0A;color:#fff;font-family:'Inter',sans-serif}
+  .card{
+    width:600px;height:900px;position:relative;
+    background:
+      linear-gradient(180deg, #0A0A0A 0%, #1a0008 45%, #0A0A0A 100%);
+    overflow:hidden;
+  }
+  /* spotlight cones from above */
+  .beam{
+    position:absolute;top:-10%;width:300px;height:760px;
+    background:linear-gradient(180deg, rgba(230,0,35,0.35) 0%, rgba(230,0,35,0.08) 50%, transparent 100%);
+    transform-origin:top center;
+    filter:blur(18px);
+    mix-blend-mode:screen;
+  }
+  .beam.b1{ left:-5%; transform: rotate(18deg); }
+  .beam.b2{ right:-5%; transform: rotate(-18deg); }
+  .beam.b3{ left:50%; transform: translateX(-50%); opacity:0.6; width:260px; }
+
+  /* Floor glow */
+  .floor{
+    position:absolute;bottom:0;left:0;right:0;height:40%;
+    background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(230,0,35,0.45) 0%, rgba(122,0,16,0.2) 40%, transparent 75%);
+  }
+
+  .content{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:50px 40px;
+    gap:18px;
+  }
+  .eyebrow{
+    font-family:'Bebas Neue',sans-serif;font-size:32px;
+    color:#C9A24E;letter-spacing:8px;line-height:1;
+  }
+  .title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:118px;line-height:0.88;letter-spacing:2px;
+    color:#fff;
+    text-shadow:
+      0 0 4px rgba(230,0,35,0.8),
+      0 0 18px rgba(230,0,35,0.5),
+      0 0 40px rgba(230,0,35,0.3);
+  }
+  .accent{
+    width:90px;height:2px;background:#E60023;
+    box-shadow:0 0 8px rgba(230,0,35,0.9);
+    margin-top:8px;
+  }
+  .sub{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:18px;
+    color:rgba(255,255,255,0.7);letter-spacing:4px;text-transform:uppercase;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="beam b1"></div>
+  <div class="beam b2"></div>
+  <div class="beam b3"></div>
+  <div class="floor"></div>
+  <div class="content">
+    <div class="eyebrow">CADA NOCHE</div>
+    <div class="title">ESPECT&Aacute;<br/>CULOS</div>
+    <div class="accent"></div>
+    <div class="sub">EN VIVO &middot; 7PM A 3AM</div>
+  </div>
+</div>
+</body>
+</html>
