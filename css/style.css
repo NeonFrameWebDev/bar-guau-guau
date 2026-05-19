@@ -896,6 +896,8 @@ nav {
   border-radius: var(--radius);
   min-height: 280px;
   max-height: 420px;
+  max-width: 320px;
+  margin-inline: auto;
 }
 
 .lacasa-photo {
