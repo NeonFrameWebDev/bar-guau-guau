@@ -181,16 +181,17 @@
 
 /*
   Strategy: CSS columns masonry, 2 cols mobile, 3 cols desktop.
-  Aspect ratios set via padding-top trick on .gal-tile-img-wrap
-  so each tile has a defined shape regardless of image load.
+  Aspect ratios set via the modern aspect-ratio property on
+  .gal-tile-img-wrap. The old padding-top trick collapsed to
+  zero height inside CSS columns layout; aspect-ratio does not.
 
   Aspect classes:
-  .portrait  -- 3:4 ratio (75% padding = 4/3 * 100% / ... )
+  .portrait  -- 3:4 ratio
   .landscape -- 16:10 ratio
   .square    -- 1:1 (not used this build but wired up)
 
-  MOBILE override: portrait tiles get capped height to avoid
-  super-tall columns that hurt thumb-scroll.
+  MOBILE override: all tiles use 3:4 to avoid excessively tall
+  columns that hurt thumb-scroll.
 */
 
 .gal-masonry {
@@ -213,17 +214,19 @@
     box-shadow   0.3s ease;
 }
 
-/* Image wrapper with intrinsic aspect ratio via padding trick */
+/* Image wrapper with intrinsic aspect ratio via aspect-ratio property.
+   aspect-ratio works reliably inside CSS columns; the old padding-top
+   trick computed against a 0-width context and collapsed to 0px height. */
 .gal-tile-img-wrap {
   position: relative;
   overflow: hidden;
-  /* Mobile: all tiles get a safe capped height regardless of class */
-  padding-top: 110%;
+  display: block;
+  width: 100%;
+  /* Mobile: safe 3:4 for all tiles */
+  aspect-ratio: 3 / 4;
 }
 
 .gal-tile-img-wrap img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -306,19 +309,19 @@
     margin-bottom: 14px;
   }
 
-  /* Portrait: real 3:4 */
+  /* Portrait: 3:4 */
   .gal-tile.portrait .gal-tile-img-wrap {
-    padding-top: 133.33%;
+    aspect-ratio: 3 / 4;
   }
 
   /* Landscape: 16:10 */
   .gal-tile.landscape .gal-tile-img-wrap {
-    padding-top: 62.5%;
+    aspect-ratio: 16 / 10;
   }
 
   /* Square: 1:1 */
   .gal-tile.square .gal-tile-img-wrap {
-    padding-top: 100%;
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -347,12 +350,10 @@
   }
 }
 
-/* Feature tiles: span 2 columns in supported browsers (Chromium) */
-/* We use a wider padding override instead of column-span to keep
-   CSS masonry working reliably cross-browser */
+/* Feature tiles: slightly wider crop for the featured landscape hero */
 @media (min-width: 768px) {
   .gal-tile.feature.landscape .gal-tile-img-wrap {
-    padding-top: 58%; /* Slightly wider crop for featured landscape */
+    aspect-ratio: 16 / 9;
   }
 }
 
