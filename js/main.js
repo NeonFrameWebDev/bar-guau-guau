@@ -58,21 +58,18 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     }
   }, intervalMs);
 
-  // Loader exits after age-enter click (age gate flow) -- see age gate
-  // But if no age gate (other pages), auto-exit after 2.4s
-  const gate = document.getElementById("age-gate");
-  if (!gate) {
+  // Always auto-exit after 2.4s; age gate sits below loader (z-index) and
+  // becomes visible once the loader fades -- it handles its own click flow.
+  setTimeout(() => {
+    if (bar) bar.style.width = "100%";
     setTimeout(() => {
-      if (bar) bar.style.width = "100%";
+      loader.classList.add("fade-out");
       setTimeout(() => {
-        loader.classList.add("fade-out");
-        setTimeout(() => {
-          loader.style.display = "none";
-          document.body.classList.remove("loading");
-        }, 500);
-      }, 200);
-    }, 2400);
-  }
+        loader.style.display = "none";
+        document.body.classList.remove("loading");
+      }, 500);
+    }, 200);
+  }, 2400);
 })();
 
 /* ── Age Gate ─────────────────────────────────────────────── */
@@ -100,25 +97,6 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
       setTimeout(() => {
         gate.style.display = "none";
         document.body.style.overflow = "";
-        // Now run the loader for first visit
-        if (loader) {
-          const bar = loader.querySelector(".loader-bar-fill");
-          let p = 0;
-          const t = setInterval(() => {
-            p += 12;
-            if (bar) bar.style.width = Math.min(p, 100) + "%";
-            if (p >= 100) {
-              clearInterval(t);
-              setTimeout(() => {
-                loader.classList.add("fade-out");
-                setTimeout(() => {
-                  loader.style.display = "none";
-                  document.body.classList.remove("loading");
-                }, 500);
-              }, 150);
-            }
-          }, 60);
-        }
       }, 460);
     });
   }
