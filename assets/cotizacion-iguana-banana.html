@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Cotizaci&oacute;n &middot; Iguana Banana &middot; NeonFrame Web Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: letter; margin: 0; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0A0A0A;
+    --red:#E60023;
+    --oxblood:#7A0010;
+    --gold:#C9A24E;
+    --line:rgba(230,0,35,0.22);
+    --mute:rgba(255,255,255,0.55);
+    --text:rgba(255,255,255,0.92);
+  }
+  html,body{
+    width:816px;height:1056px;
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',sans-serif;font-weight:400;font-size:14px;line-height:1.5;
+    overflow:hidden;
+  }
+  .page{
+    width:816px;height:1056px;padding:56px 64px 40px;position:relative;
+    background:
+      radial-gradient(ellipse 80% 30% at 50% 0%, rgba(230,0,35,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 25% at 50% 100%, rgba(122,0,16,0.18) 0%, transparent 70%),
+      var(--bg);
+    display:flex;flex-direction:column;gap:24px;
+  }
+  .page::before{
+    content:"";position:absolute;inset:18px;border:1px solid var(--line);pointer-events:none;
+  }
+  /* Header */
+  .header{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand svg{width:48px;height:48px}
+  .brand .name{
+    font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--red);line-height:1;
+    text-shadow:0 0 8px rgba(230,0,35,0.5);
+  }
+  .brand .tag{font-size:10px;letter-spacing:4px;color:var(--mute);text-transform:uppercase;margin-top:2px}
+  .doc-meta{text-align:right;font-size:11px;color:var(--mute);letter-spacing:1.5px;text-transform:uppercase}
+  .doc-meta .doc-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);letter-spacing:5px;display:block;margin-bottom:4px;line-height:1}
+  /* Subject row */
+  .subject{
+    display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+    padding:14px 18px;background:rgba(255,255,255,0.03);border-left:3px solid var(--red);border-radius:3px;
+  }
+  .subject .for-label{font-size:10px;letter-spacing:3px;color:var(--mute);text-transform:uppercase;margin-bottom:2px}
+  .subject .for-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;line-height:1}
+  .subject .for-place{font-size:12px;color:var(--mute);margin-top:3px}
+  /* Intro */
+  .intro{font-size:13.5px;color:var(--text);line-height:1.55}
+  .intro b{color:#fff;font-weight:600}
+  /* Tier grid */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .tier{
+    border:1px solid var(--line);border-radius:6px;padding:18px 18px 16px;background:rgba(255,255,255,0.02);
+    display:flex;flex-direction:column;position:relative;
+  }
+  .tier.recommended{
+    border-color:var(--red);
+    background:linear-gradient(180deg, rgba(230,0,35,0.08) 0%, rgba(230,0,35,0.02) 100%);
+    box-shadow:inset 0 0 30px rgba(230,0,35,0.05);
+  }
+  .tier .badge{
+    position:absolute;top:-9px;right:14px;background:var(--red);color:#fff;
+    font-size:9px;letter-spacing:2.5px;padding:3px 10px;border-radius:99px;text-transform:uppercase;font-weight:600;
+  }
+  .tier .tier-name{
+    font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:5px;color:var(--gold);line-height:1;margin-bottom:6px;
+  }
+  .tier .tier-title{
+    font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:#fff;line-height:1;margin-bottom:10px;
+  }
+  .tier .price-row{display:flex;align-items:baseline;gap:8px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .tier .price{
+    font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;color:var(--red);line-height:1;
+    text-shadow:0 0 8px rgba(230,0,35,0.35);
+  }
+  .tier.recommended .price{color:var(--red)}
+  .tier .price-usd{font-size:11px;color:var(--mute);letter-spacing:1px}
+  .tier .price-note{font-size:10.5px;color:var(--mute);letter-spacing:0.5px;margin-top:-6px;margin-bottom:10px}
+  .tier ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+  .tier li{
+    font-size:12px;color:var(--text);line-height:1.4;position:relative;padding-left:14px;
+  }
+  .tier li::before{
+    content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--red);border-radius:50%;
+    box-shadow:0 0 4px rgba(230,0,35,0.6);
+  }
+  /* Maintenance row */
+  .maintenance{
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+    padding:14px 18px;border:1px dashed var(--line);border-radius:6px;background:rgba(255,255,255,0.02);
+  }
+  .maintenance .m-left{display:flex;flex-direction:column;gap:2px}
+  .maintenance .m-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);line-height:1}
+  .maintenance .m-title{font-size:13px;color:#fff;font-weight:600}
+  .maintenance .m-desc{font-size:11.5px;color:var(--mute);line-height:1.4;max-width:380px}
+  .maintenance .m-price{text-align:right}
+  .maintenance .m-price .v{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);letter-spacing:1px;line-height:1}
+  .maintenance .m-price .u{font-size:10px;color:var(--mute);letter-spacing:1px}
+  /* Next steps */
+  .next{
+    display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+    padding:14px 18px;background:linear-gradient(90deg, rgba(122,0,16,0.18) 0%, rgba(122,0,16,0.04) 100%);
+    border-left:3px solid var(--gold);border-radius:3px;
+  }
+  .next .n-label{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:4px;line-height:1}
+  .next .n-text{font-size:12.5px;color:var(--text);line-height:1.5}
+  .next .n-contact{
+    text-align:right;font-family:'Bebas Neue',sans-serif;
+  }
+  .next .n-contact .c-lbl{font-size:10px;letter-spacing:2.5px;color:var(--mute);font-family:'Inter',sans-serif;font-weight:500;text-transform:uppercase;display:block;margin-bottom:4px;letter-spacing:2px}
+  .next .n-contact .c-name{font-size:22px;letter-spacing:1px;color:#fff;line-height:1}
+  .next .n-contact .c-role{font-size:9.5px;font-family:'Inter',sans-serif;color:var(--mute);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;display:block}
+  /* Footer */
+  .footer{
+    margin-top:auto;display:flex;justify-content:space-between;align-items:center;
+    padding-top:14px;border-top:1px solid var(--line);
+    font-size:10px;color:var(--mute);letter-spacing:1.5px;text-transform:uppercase;
+  }
+  .footer .f-brand{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;color:var(--red);font-size:13px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="3" fill="none"/>
+        <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="34" fill="#E60023" text-anchor="middle" dominant-baseline="middle">N</text>
+        <text x="60" y="78" font-family="'Bebas Neue', sans-serif" font-size="12" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">NEONFRAME</text>
+      </svg>
+      <div>
+        <div class="name">NEONFRAME WEB DESIGN</div>
+        <div class="tag">Sitios web para bares, restaurantes y antros</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <span class="doc-title">COTIZACI&Oacute;N</span>
+      <div>19 de mayo, 2026</div>
+      <div>Valida 30 d&iacute;as</div>
+    </div>
+  </div>
+
+  <!-- Subject -->
+  <div class="subject">
+    <div>
+      <div class="for-label">Para</div>
+      <div class="for-name">IGUANA BANANA</div>
+      <div class="for-place">Puerto Pe&ntilde;asco, Sonora &middot; Bar, desayunos y antro</div>
+    </div>
+    <div style="text-align:right">
+      <div class="for-label">Tipo de proyecto</div>
+      <div style="font-size:13px;color:#fff;font-weight:600;margin-top:4px">Sitio web nuevo</div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <p class="intro">
+    Hacemos sitios web r&aacute;pidos, en espa&ntilde;ol e ingl&eacute;s, con fotos reales de su lugar.
+    Listos para que la gente de Rocky Point y los turistas los encuentren en Google,
+    vean su men&uacute;, sus horarios y los llamen directo. <b>Sin contratos largos, sin sorpresas.</b>
+  </p>
+
+  <!-- Tiers -->
+  <div class="tiers">
+
+    <!-- Tier 1 -->
+    <div class="tier">
+      <div class="tier-name">OPCI&Oacute;N 1</div>
+      <div class="tier-title">UNA P&Aacute;GINA</div>
+      <div class="price-row">
+        <span class="price">$4,999</span>
+        <span class="price-usd">MXN &middot; ($500 USD)</span>
+      </div>
+      <div class="price-note">Pago &uacute;nico &middot; Entrega en 24 a 48 horas</div>
+      <ul>
+        <li>Una p&aacute;gina con todas las secciones: hero, sobre el lugar, men&uacute;, eventos, contacto</li>
+        <li>Hasta 10 fotos reales de su lugar (no fotos de stock)</li>
+        <li>Bot&oacute;n directo para que llamen al tel&eacute;fono</li>
+        <li>Mapa de Google embebido</li>
+        <li>Funciona perfecto en celular</li>
+        <li>Bot&oacute;n para cambiar entre espa&ntilde;ol e ingl&eacute;s</li>
+        <li>Botones de Facebook e Instagram</li>
+      </ul>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="tier recommended">
+      <span class="badge">Recomendado</span>
+      <div class="tier-name">OPCI&Oacute;N 2</div>
+      <div class="tier-title">SITIO COMPLETO</div>
+      <div class="price-row">
+        <span class="price">$7,999</span>
+        <span class="price-usd">MXN &middot; ($800 USD)</span>
+      </div>
+      <div class="price-note">Pago &uacute;nico &middot; Entrega en 2 a 3 d&iacute;as</div>
+      <ul>
+        <li>Todo lo de la Opci&oacute;n 1, m&aacute;s:</li>
+        <li>5 p&aacute;ginas separadas (Inicio, La Casa, Men&uacute;, Eventos, Contacto)</li>
+        <li>Animaciones cinematogr&aacute;ficas en el hero, estilo antro</li>
+        <li>Filtro de edad 18+ en la entrada (opcional)</li>
+        <li>SEO optimizado para Google. Mejor posicionamiento en b&uacute;squedas locales</li>
+        <li>Aparece en el panel de Google con horarios, fotos y direcci&oacute;n</li>
+        <li>F&aacute;cil de crecer despu&eacute;s (m&aacute;s p&aacute;ginas se agregan sin volver a pagar)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Maintenance -->
+  <div class="maintenance">
+    <div class="m-left">
+      <span class="m-label">OPCIONAL</span>
+      <span class="m-title">Mantenimiento mensual</span>
+      <span class="m-desc">Cambios de fotos, eventos, men&uacute; y horarios cuando los necesite. Respaldos autom&aacute;ticos. Soporte por WhatsApp.</span>
+    </div>
+    <div class="m-price">
+      <div class="v">$999<span class="u"> MXN / mes</span></div>
+      <div class="u">($100 USD / mes)</div>
+    </div>
+  </div>
+
+  <!-- Next steps -->
+  <div class="next">
+    <div>
+      <div class="n-label">SIGUIENTE PASO</div>
+      <div class="n-text">
+        Conf&iacute;rmenos la opci&oacute;n que prefieran. En 24 horas tienen el sitio en vivo, listo para revisar antes de pagar.
+        Pago cuando est&eacute;n contentos con el resultado.
+      </div>
+    </div>
+    <div class="n-contact">
+      <span class="c-lbl">CONTACTO</span>
+      <span class="c-name">MARCOS</span>
+      <span class="c-role">Representante en Puerto Pe&ntilde;asco</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="f-brand">NEONFRAME WEB DESIGN</span>
+    <span>neonframewebdesign.com</span>
+  </div>
+
+</div>
+</body>
+</html>
