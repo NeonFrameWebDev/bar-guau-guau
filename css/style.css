@@ -1265,7 +1265,7 @@ nav.scrolled {
 
 .hours-row {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 110px auto;
   gap: 0.5rem 1.5rem;
   font-family: var(--font-body);
   font-weight: 600;

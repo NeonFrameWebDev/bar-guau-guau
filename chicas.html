@@ -20,6 +20,9 @@
   <meta name="twitter:description" content="Espect&aacute;culos en vivo cada noche. Calle 13, Puerto Pe&ntilde;asco." />
   <meta name="twitter:image" content="https://neonframewebdev.github.io/bar-guau-guau/assets/og-card.jpg" />
 
+  <link rel="alternate" hreflang="es" href="https://neonframewebdev.github.io/bar-guau-guau/chicas.html" />
+  <link rel="alternate" hreflang="en" href="https://neonframewebdev.github.io/bar-guau-guau/chicas.html" />
+  <link rel="alternate" hreflang="x-default" href="https://neonframewebdev.github.io/bar-guau-guau/chicas.html" />
   <link rel="canonical" href="https://neonframewebdev.github.io/bar-guau-guau/chicas.html" />
   <meta name="theme-color" content="#0A0A0A" />
 
@@ -27,7 +30,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" /></noscript>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -253,7 +258,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
