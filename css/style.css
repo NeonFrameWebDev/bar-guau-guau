@@ -1302,7 +1302,7 @@ nav.scrolled {
   overflow: hidden;
   border-radius: var(--radius);
   aspect-ratio: 4 / 5;
-  max-width: 300px; /* native: 251x310 — capped at 1.19x native width */
+  max-width: 300px; /* native: 251x310, capped at 1.19x native width */
   margin-inline: auto;
   border: 1px solid rgba(230,0,35,0.15);
   box-shadow:
