@@ -709,9 +709,12 @@ nav.scrolled {
   z-index: 0;
   overflow: hidden;
   background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* Blurred, darkened backdrop fills the frame so there are no letterbox
-   bars behind the contained photo, and adds neon-lit atmosphere. */
+   bars behind the photo, and adds neon-lit atmosphere. */
 .hero-photo-blur {
   position: absolute;
   inset: 0;
@@ -722,47 +725,56 @@ nav.scrolled {
   filter: blur(34px) brightness(0.42) saturate(1.15);
   transform: scale(1.15);
 }
-/* Sharp foreground shows the whole building + sign (zoomed out, no crop). */
+/* Frame is sized to exactly match the displayed photo (image aspect
+   1600x1299) so its edges land on the real photo edges and percentage
+   positions map to fixed spots on the photo at any viewport. */
+.hero-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: calc((100dvh - var(--nav-h)) * 1600 / 1299);
+  max-height: calc(100vw * 1299 / 1600);
+  /* Feather all edges so the photo melts into the blurred backdrop
+     instead of reading as a hard rectangle. */
+  -webkit-mask-image: radial-gradient(ellipse 95% 93% at 50% 47%, #000 66%, transparent 100%);
+          mask-image: radial-gradient(ellipse 95% 93% at 50% 47%, #000 66%, transparent 100%);
+}
 .hero-photo-base,
 .hero-photo-flicker {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center 42%;
+  object-fit: cover;
 }
-/* Brightened copy stacked exactly on the base; its opacity flickers,
-   so the bright red GUAU sign (the strongest neon) appears to buzz.
-   Both layers share identical sizing, so they stay aligned at any size. */
+/* Brightened copy, masked to ONLY the GUAU sign region, so just the
+   sign flickers/flashes while the rest of the building stays steady. */
 .hero-photo-flicker {
-  filter: brightness(1.5) saturate(1.35) contrast(1.05);
+  filter: brightness(1.7) saturate(1.4) contrast(1.05);
   mix-blend-mode: screen;
-  opacity: 0.85;
+  opacity: 0.9;
   will-change: opacity;
   animation: guau-neon-flicker 5.5s steps(1, end) infinite;
+  -webkit-mask-image: radial-gradient(ellipse 31% 15% at 32% 39%, #000 48%, transparent 100%);
+          mask-image: radial-gradient(ellipse 31% 15% at 32% 39%, #000 48%, transparent 100%);
 }
 @keyframes guau-neon-flicker {
-  0%   { opacity: 0.85; }
-  3%   { opacity: 0.25; }
-  4%   { opacity: 0.9; }
-  6%   { opacity: 0.4; }
-  7%   { opacity: 0.92; }
-  8%   { opacity: 0.6; }
-  9%   { opacity: 0.9; }
-  35%  { opacity: 0.9; }
-  36%  { opacity: 0.3; }
-  37%  { opacity: 0.92; }
-  62%  { opacity: 0.88; }
-  63%  { opacity: 0.45; }
-  64%  { opacity: 0.92; }
-  65%  { opacity: 0.35; }
-  66%  { opacity: 0.9; }
-  100% { opacity: 0.85; }
-}
-@media (max-width: 767px) {
-  .hero-photo-base,
-  .hero-photo-flicker { object-position: center 16%; }
+  0%   { opacity: 0.9; }
+  2%   { opacity: 0.18; }
+  3%   { opacity: 0.92; }
+  5%   { opacity: 0.35; }
+  6%   { opacity: 0.92; }
+  7%   { opacity: 0.5; }
+  8%   { opacity: 0.9; }
+  30%  { opacity: 0.9; }
+  31%  { opacity: 0.15; }
+  32%  { opacity: 0.92; }
+  58%  { opacity: 0.9; }
+  59%  { opacity: 0.4; }
+  60%  { opacity: 0.92; }
+  61%  { opacity: 0.2; }
+  62%  { opacity: 0.9; }
+  100% { opacity: 0.9; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-photo-flicker { animation: none; opacity: 0.7; }
