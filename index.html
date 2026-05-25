@@ -73,6 +73,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" /></noscript>
 
   <!-- Styles -->
+  <link rel="preload" as="image" href="assets/hero-building.webp" fetchpriority="high" type="image/webp" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="loading">
@@ -184,13 +185,14 @@
   <section id="hero" aria-label="Hero">
     <div class="hero-wrap">
 
-      <!-- Layer 1: Noise grain texture -->
-      <div class="hero-grain" aria-hidden="true"></div>
+      <!-- Layer 1: Building photo with flickering GUAU neon sign -->
+      <div class="hero-photo" aria-hidden="true">
+        <img class="hero-photo-base" src="assets/hero-building.webp" alt="" width="1600" height="1299" fetchpriority="high" decoding="async" />
+        <img class="hero-photo-flicker" src="assets/hero-building.webp" alt="" aria-hidden="true" decoding="async" />
+        <div class="hero-sign-glow"></div>
+      </div>
 
-      <!-- Layer 2: Radial oxblood glow bloom -->
-      <div class="hero-bloom" aria-hidden="true"></div>
-
-      <!-- Layer 3: Horizontal neon sweep -->
+      <!-- Layer 2: Horizontal neon sweep -->
       <div class="hero-neon-pulse" aria-hidden="true"></div>
 
       <!-- Ember particles: 8 floating red dots -->
@@ -207,14 +209,6 @@
 
       <!-- Mouse-follow glow (JS writes background position) -->
       <div class="hero-mouse-glow" aria-hidden="true"></div>
-
-      <!-- Layer 4: Centerpiece Diamond-G SVG -->
-      <div class="hero-centerpiece" aria-hidden="true">
-        <div class="hero-neon-sign">
-          <span class="hero-neon-word">GUAU</span>
-          <span class="hero-neon-word">GUAU</span>
-        </div>
-      </div>
 
       <!-- Layer 5: Text content and CTAs -->
       <div class="hero-content">

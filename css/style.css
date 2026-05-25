@@ -702,6 +702,84 @@ nav.scrolled {
   background: var(--bg);
 }
 
+/* --- Hero building photo + flickering GUAU neon sign --- */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-photo-base,
+.hero-photo-flicker {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+/* Brightened copy stacked exactly on the base; its opacity flickers,
+   so the bright red GUAU sign (the strongest neon) appears to buzz.
+   Both layers share identical sizing, so they stay aligned at any size. */
+.hero-photo-flicker {
+  filter: brightness(1.5) saturate(1.35) contrast(1.05);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  will-change: opacity;
+  animation: guau-neon-flicker 5.5s steps(1, end) infinite;
+}
+@keyframes guau-neon-flicker {
+  0%   { opacity: 0.85; }
+  3%   { opacity: 0.25; }
+  4%   { opacity: 0.9; }
+  6%   { opacity: 0.4; }
+  7%   { opacity: 0.92; }
+  8%   { opacity: 0.6; }
+  9%   { opacity: 0.9; }
+  35%  { opacity: 0.9; }
+  36%  { opacity: 0.3; }
+  37%  { opacity: 0.92; }
+  62%  { opacity: 0.88; }
+  63%  { opacity: 0.45; }
+  64%  { opacity: 0.92; }
+  65%  { opacity: 0.35; }
+  66%  { opacity: 0.9; }
+  100% { opacity: 0.85; }
+}
+/* Localized red glow over the sign region (top-left of frame) */
+.hero-sign-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 46% 36% at 36% 36%,
+    rgba(255, 45, 70, 0.30) 0%,
+    rgba(230, 0, 35, 0.12) 45%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  animation: guau-sign-glow 5.5s steps(1, end) infinite;
+}
+@keyframes guau-sign-glow {
+  0%   { opacity: 0.9; }
+  3%   { opacity: 0.2; }
+  4%   { opacity: 0.95; }
+  6%   { opacity: 0.35; }
+  7%   { opacity: 0.95; }
+  35%  { opacity: 0.95; }
+  36%  { opacity: 0.25; }
+  37%  { opacity: 0.95; }
+  62%  { opacity: 0.9; }
+  64%  { opacity: 0.4; }
+  66%  { opacity: 0.95; }
+  100% { opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-flicker { animation: none; opacity: 0.7; }
+  .hero-sign-glow { animation: none; opacity: 0.7; }
+}
+
 /* --- Layer 1: Film grain / noise texture --- */
 .hero-grain {
   position: absolute;
