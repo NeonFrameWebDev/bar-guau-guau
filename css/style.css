@@ -735,9 +735,10 @@ nav.scrolled {
   max-width: calc((100dvh - var(--nav-h)) * 1600 / 1299);
   max-height: calc(100vw * 1299 / 1600);
   /* Feather all edges so the photo melts into the blurred backdrop
-     instead of reading as a hard rectangle. */
-  -webkit-mask-image: radial-gradient(ellipse 95% 93% at 50% 47%, #000 66%, transparent 100%);
-          mask-image: radial-gradient(ellipse 95% 93% at 50% 47%, #000 66%, transparent 100%);
+     instead of reading as a hard rectangle. Radius is kept under 50% so
+     the edge midpoints fall in the fade zone (not the opaque core). */
+  -webkit-mask-image: radial-gradient(ellipse 56% 58% at 50% 46%, #000 56%, rgba(0,0,0,0.4) 82%, transparent 100%);
+          mask-image: radial-gradient(ellipse 56% 58% at 50% 46%, #000 56%, rgba(0,0,0,0.4) 82%, transparent 100%);
 }
 .hero-photo-base,
 .hero-photo-flicker {
@@ -747,16 +748,21 @@ nav.scrolled {
   height: 100%;
   object-fit: cover;
 }
-/* Brightened copy, masked to ONLY the GUAU sign region, so just the
-   sign flickers/flashes while the rest of the building stays steady. */
+/* Brightened copy, masked to ONLY the two neon signs (the big GUAU on
+   the left and the angled sign on the right), so just the signs
+   flicker/flash while the rest of the building stays steady. */
 .hero-photo-flicker {
   filter: brightness(1.7) saturate(1.4) contrast(1.05);
   mix-blend-mode: screen;
   opacity: 0.9;
   will-change: opacity;
   animation: guau-neon-flicker 5.5s steps(1, end) infinite;
-  -webkit-mask-image: radial-gradient(ellipse 31% 15% at 32% 39%, #000 48%, transparent 100%);
-          mask-image: radial-gradient(ellipse 31% 15% at 32% 39%, #000 48%, transparent 100%);
+  -webkit-mask-image:
+    radial-gradient(ellipse 30% 15% at 32% 39%, #000 50%, transparent 100%),
+    radial-gradient(ellipse 13% 16% at 82% 45%, #000 46%, transparent 100%);
+          mask-image:
+    radial-gradient(ellipse 30% 15% at 32% 39%, #000 50%, transparent 100%),
+    radial-gradient(ellipse 13% 16% at 82% 45%, #000 46%, transparent 100%);
 }
 @keyframes guau-neon-flicker {
   0%   { opacity: 0.9; }
@@ -775,6 +781,12 @@ nav.scrolled {
   61%  { opacity: 0.2; }
   62%  { opacity: 0.9; }
   100% { opacity: 0.9; }
+}
+@media (max-width: 767px) {
+  /* On tall phone screens, anchor the photo near the top instead of
+     vertically centered, so the sign sits high and content reads below. */
+  .hero-photo { align-items: flex-start; }
+  .hero-photo-frame { margin-top: 7vh; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-photo-flicker { animation: none; opacity: 0.7; }
