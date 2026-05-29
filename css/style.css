@@ -1512,18 +1512,18 @@ nav.scrolled {
 .subpage-hero h1 {
   font-family: var(--font-display);
   font-size: clamp(4rem, 14vw, 9rem);
-  /* iOS Safari fix: the previous version used a saturated-red fill + same-color
-     -webkit-text-stroke + stacked text-shadows up to 100px blur. On WebKit/iOS those
-     overlapping large-radius shadows saturate into a solid red blob (the letters vanish
-     inside their own glow), while Chrome/Android blended them softly. This matches the
-     proven cross-OS-safe .hero-h1 pattern: lighter fill + tiny near-white core + moderate
-     blurs, no text-stroke. Renders as legible neon red on both iOS and Android. */
-  color: #FF3355;
+  /* True neon RED glow, iOS-safe. The original blobbed on iOS because of a same-color
+     -webkit-text-stroke + text-shadow blurs up to 100px saturating into a solid mass.
+     The first fix over-corrected (pink #FF3355 + a near-white core that desaturated it
+     + a weak glow). This version: a vivid RED fill (not pink), NO text-stroke, NO white
+     core, and a stronger red glow whose blur radii are capped at 30px so iOS keeps it a
+     soft halo instead of a blob. Reads as glowing red on both iOS and Android. */
+  color: #FF1E2D;
   line-height: 0.88;
   text-shadow:
-    0 0 1px rgba(255, 224, 228, 0.95),
-    0 0 10px rgba(230, 0, 35, 0.6),
-    0 0 26px rgba(230, 0, 35, 0.34);
+    0 0 6px rgba(255, 30, 48, 0.8),
+    0 0 16px rgba(230, 0, 35, 0.65),
+    0 0 30px rgba(230, 0, 35, 0.5);
   position: relative;
   z-index: 1;
 }
